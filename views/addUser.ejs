@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/stylePlugin'); %>
+    <title>Add User</title>
+</head>
+<body>
+    <header><%- include('./partials/navBar'); %></header>
+    <main class="d-flex justify-content-center">
+        <form action="/users/added" method="post" id="add-user-form" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <h3 class="mb-5">Add User</h3>
+            <!-- Email input -->
+            <div class="form-floating mb-3">
+                <input type="email" name="email" class="form-control" placeholder="Email Address" />
+                <label class="form-label" for="inputEmail">Email address</label>
+            </div>
+            <div class="row mb-3">
+                <!-- Name input -->
+                <div class="col form-floating">
+                    <input type="text" name="name" class="form-control" placeholder="Name" />
+                    <label class="form-label" for="inputName" style="margin-left: 0.75rem">Name</label>
+                </div>
+                <!-- Surname input -->
+                <div class="col form-floating">
+                    <input type="text" name="surname" class="form-control" placeholder="Surname" />
+                    <label class="form-label" for="inputSurname" style="margin-left: 0.75rem">Surname</label>
+                </div>
+            </div>
+    
+            <!-- Hero input -->
+            <div class="form-floating mb-3">
+                <input type="text" name="hero" class="form-control" placeholder="Your Hero" />
+                <label class="form-label" for="inputHero">Your Hero</label>
+            </div>
+            <!-- Info input -->
+            <div class="form-floating mb-3">
+                <input type="text" name="info" class="form-control" placeholder="Your Info" />
+                <label class="form-label" for="inputInfo">Info</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-floating mb-5">
+                <input type="password"name="password" class="form-control" placeholder="Password"/>
+                <label class="form-label" for="inputInfo">Password</label>
+            </div>
+    
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-dark btn-lg btn-block mb-4" style="width: 100%"
+                id="register">Submit</button>
+        </form>
+    </main>
+    <footer><%- include('./partials/footer'); %></footer>
+</body>
+</html>

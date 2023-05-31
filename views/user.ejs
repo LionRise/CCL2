@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/stylePlugin'); %>
+        <title>Server Side Coding</title>
+
+
+</head>
+
+<body>
+    <header><%- include('./partials/navBar'); %></header>
+    <main class="d-flex justify-content-center">
+        <form id="add-user-form" class="shadow-lg p-3 mb-5 bg-white rounded d-flex flex-column">
+            <img src="/images/man.png" width="150px" style="align-self: center;">
+            <!-- Email input -->
+            <div class="form-floating mb-3 mt-3">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email Address"
+                    value="<%= user.email %>" disabled />
+                <label class="form-label" for="inputEmail">Email address</label>
+            </div>
+            <div class="row mb-3">
+                <!-- Name input -->
+                <div class="col form-floating">
+                    <input type="text" id="inputName" class="form-control" placeholder="Name" value="<%= user.name %>"
+                        disabled />
+                    <label class="form-label" for="inputName" style="margin-left: 0.75rem">Name</label>
+                </div>
+                <!-- Surname input -->
+                <div class="col form-floating">
+                    <input type="text" id="inputSurname" class="form-control" placeholder="Surname"
+                        value="<%= user.surname %>" disabled />
+                    <label class="form-label" for="inputSurname" style="margin-left: 0.75rem">Surname</label>
+                </div>
+            </div>
+
+            <!-- Hero input -->
+            <div class="form-floating mb-3">
+                <input type="text" id="inputHero" class="form-control" placeholder="Hero" value="<%= user.hero %>"
+                    disabled />
+                <label class="form-label" for="inputHero">Hero</label>
+            </div>
+            <!-- Info input -->
+            <div class="form-floating mb-3">
+                <input type="text" id="inputInfo" class="form-control" placeholder="Info" value="<%= user.info %>"
+                    disabled />
+                <label class="form-label" for="inputInfo">Info</label>
+            </div>
+            <!-- Password input -->
+            <div class="form-floating mb-5">
+                <input type="password"name="password" class="form-control" placeholder="Password" value="<%= user.password %>" disabled/>
+                <label class="form-label" for="inputInfo">Password</label>
+            </div>
+
+            <div class="d-flex flex-row justify-content-end action-btns">
+                <a class="btn btn-primary" href="/users/<%= user.id %>/edit">Edit</a>
+                <button class="btn btn-danger" onclick="onDelete('<%= user.id %>')">Delete</button>
+            </div>
+
+        </form>
+    </main>
+    <footer><%- include('./partials/footer'); %></footer>
+
+    <script>
+        function onDelete(id) {
+            let deleteUser = confirm("Are you really sure to delete this user?");
+
+            if (deleteUser) {
+                setTimeout(() => {
+                    window.location.href = "/users/" + id + "/delete";
+                }, 5); // Add a small delay (5ms) before redirecting because of violation warning
+            } else {
+                setTimeout(() => {
+                    window.location.href = "/users/" + id;
+                }, 5); // Add a small delay (5ms) before redirecting because of violation warning
+            }
+        }
+    </script>
+</body>
+
+</html>

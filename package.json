@@ -1,0 +1,31 @@
+{
+  "name": "ss2023-ssc-group_2",
+  "version": "1.0.0",
+  "description": "This is Group 2's repository for the course Server-Side-Coding in the summer semester of 2023",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.nwt.fhstp.ac.at/cc221005/ss2023-ssc-group_2.git"
+  },
+  "author": "SSC Group 2",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7",
+    "public": "^0.1.4",
+    "ws": "^8.13.0"
+  }
+}

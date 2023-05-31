@@ -1,0 +1,24 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/stylePlugin'); %>
+    <title>Server Side Coding</title>
+</head>
+
+<body>
+<header><%- include('./partials/navBar'); %></header>
+<main class="d-flex flex-column align-items-center justify-content-center">
+    <h1>Oh snap! Something went wrong!</h1>
+    <p class="text-center mt-2">Error: <%= error %></p>
+    <a href="/login">
+        <button class="btn btn-dark btn-lg btn-block mt-4">Login</button>
+    </a>
+    <a href="/">
+        <button class="btn btn-dark btn-lg btn-block mt-4">Back to Homepage</button>
+    </a>
+</main>
+<footer><%- include('./partials/footer'); %></footer>
+</body>
+</html>

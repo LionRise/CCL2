@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/stylePlugin'); %>
+        <title>Server Side Coding</title>
+</head>
+
+<body>
+    <header><%- include('./partials/navBar'); %></header>
+    <main class="d-flex justify-content-start align-items-start flex-wrap">
+
+        <% for(let i=0; i < users.length; i++) { %>
+            <!-- For each user, add a user card -->
+            <a class="user-card shadow bg-white mb-5 rounded" href="/users/<%= users[i].id %>">
+                <!-- With an image -->
+                <img src="/images/man.png" width="65px">
+
+                <!-- And some data -->
+                <div class="d-flex flex-column">
+                    <strong>
+                        <%= users[i].name %>
+                            <%= users[i].surname %>
+                    </strong>
+                    <p>
+                        <%= users[i].hero %>
+                    </p>
+                </div>
+            </a>
+            <% } %>
+
+                <a href="/addUser" id="add-user-card" class="shadow rounded">
+                    <strong>Add user</strong>
+                </a>
+    </main>
+    <footer><%- include('./partials/footer'); %></footer>
+</body>
+
+</html>

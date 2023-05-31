@@ -1,0 +1,146 @@
+.login-register-form {
+    width: 30%;
+    padding: 64px 64px !important;
+    background-color: white;
+}
+
+body {
+    background-color: #F1F1F1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+main {
+    width: 70vw;
+    margin-top: 150px;
+}
+
+#icon-back {
+    width: 35px;
+    font-size: 20px;
+}
+
+#nav-avatar {
+    padding-right: 16px;
+}
+
+#nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+header {
+    position: fixed;
+    width: 100vw;
+}
+
+.user-card {
+    position: relative;
+    width: 30%;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+    padding: 35px 25px;
+    cursor: pointer;
+    margin-right: 3.333333333%;
+    color: black;
+    text-decoration: none;
+}
+
+.user-card > div > p {
+    margin-bottom: 0px;
+}
+
+#add-user-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid darkgrey;
+    cursor: pointer;
+    width: 30%;
+    height: 200px;
+    margin-right: 3.333333333%;
+    color: black;
+    text-decoration: none;
+}
+
+#add-user-form {
+    width: 43%;
+    padding: 32px 64px !important;
+    background-color: white;
+}
+
+footer {
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+}
+
+.user-card > .action-btns {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    gap: 8px;
+}
+
+.action-btns {
+    gap: 8px;
+}
+
+#messages {
+    height: 70vh;
+    border: 1px #d1d1d1 solid;
+    padding: 20px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#inner-messages {
+    overflow: auto;    
+}
+
+.chat-screen {
+    gap: 40px;
+}
+
+#input-ctrl {
+    display: flex;
+    flex-direction: column;
+}
+
+#inner-messages > div > .chat-msg {
+    background-color: #d8d8d8;
+    padding: 8px 10px;
+    border-radius: 4px;
+    max-width: 70%;
+    width: fit-content;
+    overflow-wrap: break-word;
+}
+
+#inner-messages > div > .chat-name {
+    color: grey;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+#inner-messages > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}

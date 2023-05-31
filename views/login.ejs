@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/stylePlugin'); %>
+    <title>Login</title>
+</head>
+
+<body class="d-flex justify-content-center align-items-center" style="height: 100vh">
+    <form action="/login" method="post" class="login-register-form shadow-lg p-3 mb-5 bg-white rounded">
+        <h3 class="mb-5">Login</h3>
+        <!-- Email input -->
+        <div class="form-floating mb-3">
+          <input type="email" name="email" class="form-control" placeholder="Email Address"/>
+          <label class="form-label" for="inputEmail">Email address</label>
+        </div>
+      
+        <!-- Password input -->
+        <div class="form-floating mb-5">
+          <input type="password" name="password" class="form-control" placeholder="Password"/>
+          <label class="form-label" for="inputPassword">Password</label>
+        </div>
+      
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-dark btn-lg btn-block mb-4" style="width: 100%" id="login">Login</button>
+      
+        <!-- Register button -->
+        <div class="text-center">
+          <p>Don't have an account yet? <a href="register">Register!</a></p>
+        </div>
+      </form>
+      <footer><%- include('./partials/footer'); %></footer>
+</body>
+
+</html>

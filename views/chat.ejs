@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        const ws = new WebSocket("ws://localhost:8080");
+        ws.onopen = function () {
+            console.log("websocket is connected...");
+            ws.send(JSON.stringify({
+                name: "",
+                room: "",
+                message: "connected",
+            }))
+        }
+
+        ws.onmessage = function (event) {
+            console.log(event);
+            addTextMessage(JSON.parse(event.data));
+        }
+
+        function sendMyMessage() {
+            if (!(document.getElementById("chatNameInput").value.trim() === "")) {
+                document.getElementById("chatNameInput").classList.remove("is-invalid");
+                // Get room and text
+                let room = document.getElementById("room").value;
+                let text = document.getElementById("msg").value;
+                let name = document.getElementById("chatNameInput").value;
+
+                // Create JSON
+                let message = {
+                    name: name,
+                    room: room,
+                    message: text,
+                }
+
+                // Send the stringified JSON
+                ws.send(JSON.stringify(message));
+                document.getElementById("msg").value = "";
+            } else {
+                document.getElementById("chatNameInput").classList.add("is-invalid");
+            }
+
+        }
+
+        function addTextMessage(message) {
+            let incomingMessage = message.message;
+            if (!(incomingMessage.toString().trim() === "")) {
+                let textMessage = document.createElement("div");
+                let msg = document.createElement("p");
+                let name = document.createElement("p");
+
+                msg.className = "chat-msg";
+                name.className = "chat-name";
+
+                let text = document.createTextNode(incomingMessage);
+                msg.appendChild(text);
+                name.innerHTML = message.name;
+
+                textMessage.appendChild(name);
+                textMessage.appendChild(msg);
+
+                let element = document.getElementById("inner-messages");
+                element.appendChild(textMessage);
+            }
+        }
+
+        function join() {
+            let room = document.getElementById("room").value;
+            const joinBtn = document.getElementById("join-btn");
+            if(!(room === "")) {
+                joinBtn.classList.remove("btn-primary");
+                joinBtn.classList.add("btn-success");
+            } else {
+                joinBtn.classList.add("btn-primary");
+                joinBtn.classList.remove("btn-success");
+            }
+            ws.send(JSON.stringify({joinRoom: room}));
+        }
+    </script>
+    <%- include('./partials/stylePlugin'); %>
+        <title>Chat</title>
+</head>
+
+<body>
+    <header><%- include('./partials/navBar'); %></header>
+    <main>
+        <div class="row chat-screen">
+            <div class="col d-flex flex-column justify-content-end">
+                <div class="input-group mb-1">
+                    <input id="room" type="text" class="form-control" placeholder="Room number">
+                    <div class="input-group-append">
+                        <button id="join-btn" class="btn btn-primary" onclick="join()">Join</button>
+                    </div>
+                </div>
+                <div class="form-group form-floating mb-5">
+                    <input id="chatNameInput" type="text" class="form-control" id="chatName" placeholder="Chat Name">
+                    <label for="chatName">Chat Name</label>
+                    <div class="invalid-feedback">
+                        Please enter a name before chatting!
+                    </div>
+                </div>
+                <div class="input-group">
+                    <input id="msg" type="text" class="form-control" placeholder="Type a message...">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" onclick="sendMyMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+            <div id="messages" class="col-8 rounded overflow-auto">
+                <div id="inner-messages"></div>
+            </div>
+        </div>
+    </main>
+    <footer><%- include('./partials/footer'); %></footer>
+</body>
+
+</html>
