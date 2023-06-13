@@ -12,6 +12,12 @@ router.get("/", (req, res) => {
     res.render("index");
 });
 
+router.route("/myProfile")
+    .get((req, res, next) => {
+        console.log("something");
+        authenticationService.goToProfile(req.user, res, next);
+    });
+
 router.route("/login")
     .get((req, res, next) => res.render("login"))
     .post((req, res, next) => {
@@ -25,7 +31,8 @@ router.route("/login")
     });
 
 router.get("/logout", (req, res, next) => {
-    res.cookie("accessToken", "", {maxAge: 0});
+    res.cookie("accessToken", authenticationService.loggedin, "", {maxAge: 0});
+    authenticationService.loggedin = false;
     res.redirect("/");
 });
 
@@ -94,12 +101,12 @@ router.get("/example/d", [cbD1, cbD2], (req, res, next) => {
 router.get("/cookies", (req, res, next) => {
     // Read cookies
     let counter = req.cookies["visitCounter"];
-    if(isNaN(counter)) counter = 0;
+    if (isNaN(counter)) counter = 0;
     counter++;
     console.log("Current counter value: " + counter);
 
     // Set cookies
-    res.cookie("visitCounter", counter, {maxAge: 2*60*60*1000});
+    res.cookie("visitCounter", counter, {maxAge: 2 * 60 * 60 * 1000});
     res.send("You have visited the website " + counter + " times");
 });
 

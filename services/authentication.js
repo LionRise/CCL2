@@ -19,21 +19,21 @@ async function authenticateUser({email, password}, users, res, next) {
     //If the user exists and the password is correct, we create a token and redirect the user to the user page
     if(user && await checkPassword(password, user.password)) {
         const accessToken = jwt.sign({ id: user.id, name: user.name }, ACCESS_TOKEN_SECRET, { expiresIn: '30m' });
-        res.cookie("accessToken", accessToken);
         loggedin = true;
+        res.cookie("accessToken", accessToken, loggedin);
         res.redirect("/users/" + user.id);
     } else {
         next("Email or password incorrect!");
     }
 }
 
-function goToProfile(req, res, next) {
-    if (loggedin) {
-        res.redirect("/users/" + req.user.id);
-        console.log("User is logged in");
-    } else {
-        res.redirect("/login");
+function goToProfile(user, res, loggedin, next) {
+    if (!loggedin) {
+        res.render("login");
         console.log("User is not logged in");
+    } else {
+        res.redirect("/users/" + user.id);
+        console.log("User is logged in");
     }
 }
 
@@ -59,4 +59,6 @@ function authenticateJWT(req, res, next) {
 module.exports = {
     authenticateUser,
     authenticateJWT,
+    goToProfile,
+    loggedin,
 }

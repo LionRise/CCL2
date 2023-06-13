@@ -1,18 +1,68 @@
-<nav id="nav-bar" class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-white">
-    <!-- Collapsible wrapper -->
-    <a id="nav-avatar" href="/">
-        <img src="/images/man.png" height="35" alt="Avatar"/>
-    </a>
-    <!-- Left links -->
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-            <a class="nav-link" href="/users">Users</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/chat">Chat</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-    </ul>
-    <!-- Left links -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+            <a class="navbar-brand mt-2 mt-lg-0" href="/">
+                <img
+                        src="/images/team.png"
+                        height="30"
+                        alt="MDB Logo"
+                        loading="lazy"
+                />
+            </a>
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/products">Products</a>
+                </li>
+            </ul>
+            <!-- Left links -->
+        </div>
+        <!-- Right elements -->
+        <div class="d-flex flex-wrap align-items-center">
+            <!-- Avatar -->
+            <div class="nav-item dropdown">
+                <a
+                        class="nav-link dropdown-toggle d-flex align-items-center hidden-arrow"
+                        id="navbarDropdownMenuAvatar"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                >
+                    <img
+                            src="/images/user_lila.png"
+                            class="nav-link dropdown-toggle rounded-circle"
+                            height="25"
+                            alt="Black and White Portrait of a Man"
+                            loading="lazy"
+                    />
+                </a>
+                <ul
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuAvatar"
+                >
+                    <li>
+                        <a class="dropdown-item" href="/myProfile">My profile</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Settings</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Right elements -->
+    </div>
 </nav>
