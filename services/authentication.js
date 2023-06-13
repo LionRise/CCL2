@@ -8,6 +8,8 @@ async function checkPassword(password, hash) {
     return await bcrypt.compare(password, hash);
 }
 
+let loggedin = false;
+
 //This function is used to authenticate the user
 async function authenticateUser({email, password}, users, res, next) {
     const user = users.find(u => {
@@ -18,9 +20,20 @@ async function authenticateUser({email, password}, users, res, next) {
     if(user && await checkPassword(password, user.password)) {
         const accessToken = jwt.sign({ id: user.id, name: user.name }, ACCESS_TOKEN_SECRET, { expiresIn: '30m' });
         res.cookie("accessToken", accessToken);
+        loggedin = true;
         res.redirect("/users/" + user.id);
     } else {
         next("Email or password incorrect!");
+    }
+}
+
+function goToProfile(req, res, next) {
+    if (loggedin) {
+        res.redirect("/users/" + req.user.id);
+        console.log("User is logged in");
+    } else {
+        res.redirect("/login");
+        console.log("User is not logged in");
     }
 }
 
