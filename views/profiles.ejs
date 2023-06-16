@@ -13,27 +13,23 @@
 <header><%- include('./partials/navBar'); %></header>
 <main class="d-flex justify-content-start align-items-start flex-wrap">
 
-    <% for(let i = 0; i < users.length; i++) { %>
-        <!-- For each user, add a user card -->
-        <a class="user-card shadow bg-white mb-5 rounded" href="/users/<%= users[i].id %>">
+    <% for(let i = 0; i < profiles.length; i++) { %>
+        <!-- For each profile, add a profile card -->
+        <a class="profile-card shadow bg-white mb-5 rounded" href="/profiles/<%= profiles[i].id %>">
             <!-- With an image -->
             <img src="/images/man.png" width="65px">
 
             <!-- And some data -->
             <div class="d-flex flex-column">
                 <strong>
-                    <%= users[i].name %>
-                    <%= users[i].surname %>
+                    <%= profiles[i].name %>
                 </strong>
-                <p>
-                    <%= users[i].hero %>
-                </p>
             </div>
         </a>
     <% } %>
 
-    <a href="/addUser" id="add-user-card" class="shadow rounded">
-        <strong>Add user</strong>
+    <a href="/addProfile" id="add-profile-card" class="shadow rounded">
+        <strong>Add profile</strong>
     </a>
 </main>
 </body>

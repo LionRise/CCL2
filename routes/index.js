@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const userController = require("../controllers/userController.js");
-const userModel = require("../models/userModel");
+const profileController = require("../controllers/profileController.js");
+const profileModel = require("../models/profileModel");
 const authenticationService = require("../services/authentication");
 
 let storage = {};
@@ -14,16 +14,26 @@ router.get("/", (req, res) => {
 
 router.route("/myProfile")
     .get((req, res, next) => {
-        console.log("something");
-        authenticationService.goToProfile(req.user, res, next);
+        authenticationService.goToProfile(req.profile, res, next);
     });
+
+router.get("/products", (req, res) => {
+    // send the rendered page
+    res.render("products");
+});
+
+router.get("/product", (req, res) => {
+    // send the rendered page
+    res.render("product");
+});
+
 
 router.route("/login")
     .get((req, res, next) => res.render("login"))
     .post((req, res, next) => {
-        userModel.getUsers()
-            .then((users) => {
-                authenticationService.authenticateUser(req.body, users, res, next);
+        profileModel.getProfiles()
+            .then((profiles) => {
+                authenticationService.authenticateProfile(req.body, profiles, res, next);
             })
             .catch((err) => {
                 res.sendStatus(500);
@@ -41,10 +51,10 @@ router.get("/register", (req, res) => {
     res.render("register");
 });
 
-router.post("/", userController.register);
+router.post("/", profileController.register);
 
-router.get("/addUser", (req, res) => {
-    res.render("addUser");
+router.get("/addProfile", (req, res) => {
+    res.render("addProfile");
 });
 
 router.post("/", (req, res, next) => {

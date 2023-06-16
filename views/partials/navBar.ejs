@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav style="z-index: 2" class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <!-- Toggle button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -25,11 +25,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/products">Products</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chat">Chat</a>
+                </li>
             </ul>
             <!-- Left links -->
         </div>
         <!-- Right elements -->
         <div class="d-flex flex-wrap align-items-center">
+            <button type="button" class="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#cartModal">
+                <i class="bi bi-cart"></i>
+                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+            </button>
             <!-- Avatar -->
             <div class="nav-item dropdown">
                 <a
@@ -52,10 +59,10 @@
                         aria-labelledby="navbarDropdownMenuAvatar"
                 >
                     <li>
-                        <a class="dropdown-item" href="/myProfile">My profile</a>
+                        <a class="dropdown-item" href="<%= getProfileUrl()%>">My profile</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="/favourites">Favourites</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="/logout">Logout</a>

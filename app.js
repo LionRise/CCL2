@@ -42,10 +42,11 @@ app.use(morgan('short'));
 
 // Calling the routers
 const indexRouter = require("./routes/index.js");
-const usersRouter = require("./routes/users.js");
+const profilesRouter = require("./routes/profiles.js");
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/profiles", profilesRouter);
+app.locals = require('./services/authentication')
 
 function errorHandler(err, req, res, next) {
     res.render("error", {error: err});

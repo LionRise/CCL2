@@ -31,7 +31,7 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: start;
-    align-items: center;
+    align-items: center
 }
 
 header {
@@ -39,7 +39,7 @@ header {
     width: 100vw;
 }
 
-.user-card {
+.profile-card {
     position: relative;
     width: 30%;
     height: 200px;
@@ -55,11 +55,11 @@ header {
     text-decoration: none;
 }
 
-.user-card > div > p {
+.profile-card > div > p {
     margin-bottom: 0px;
 }
 
-#add-user-card {
+#add-profile-card {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,24 +72,13 @@ header {
     text-decoration: none;
 }
 
-#add-user-form {
+#add-profile-form {
     width: 43%;
     padding: 32px 64px !important;
     background-color: white;
 }
 
-footer {
-    font-size: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-}
-
-.user-card > .action-btns {
+.profile-card > .action-btns {
     position: absolute;
     bottom: 8px;
     right: 8px;

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/stylePlugin'); %>
+    <title>Profile</title>
+    <style>
+        main {
+            margin-top: 100px;
+        }
+
+        .card-style1 {
+            box-shadow: 0 0 10px 0 rgb(89 75 128 / 9%);
+        }
+
+        .border-0 {
+            border: 0 !important;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, .125);
+            border-radius: 0.25rem;
+        }
+
+        section {
+            padding: 25px 0;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .section-title {
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .text-primary {
+            color: #ceaa4d !important;
+        }
+
+        .text-secondary {
+            color: #15395A !important;
+        }
+
+        .font-weight-600 {
+            font-weight: 600;
+        }
+
+        .display-26 {
+            font-size: 1.3rem;
+        }
+
+        @media screen and (min-width: 992px) {
+            .p-lg-7 {
+                padding: 4rem;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            .p-md-6 {
+                padding: 3.5rem;
+            }
+        }
+
+        @media screen and (min-width: 576px) {
+            .p-sm-2-3 {
+                padding: 2.3rem;
+            }
+        }
+
+        .p-1-9 {
+            padding: 1.9rem;
+        }
+
+        .bg-secondary {
+            background: #15395A !important;
+        }
+
+        @media screen and (min-width: 576px) {
+            .px-sm-6 {
+                padding-right: 3.5rem;
+            }
+        }
+
+        @media screen and (min-width: 576px) {
+            .px-sm-6 {
+                padding-left: 3.5rem;
+            }
+        }
+
+        .px-1-9 {
+            padding-right: 1.9rem;
+        }
+
+        .px-1-9 {
+            padding-left: 1.9rem;
+        }
+
+        .py-1-9 {
+            padding-bottom: 1.9rem;
+        }
+
+        .py-1-9 {
+            padding-top: 1.9rem;
+        }
+
+        .mb-1-9 {
+            margin-bottom: 1.9rem;
+        }
+
+        @media (min-width: 992px) {
+            .d-lg-inline-block {
+                display: inline-block !important;
+            }
+        }
+
+        .rounded {
+            border-radius: 0.25rem !important;
+        }
+
+        btn {
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+<header><%- include('./partials/navBar'); %></header>
+<main>
+    <section class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-sm">
+                        </div>
+                        <div class="col-sm-6 text-secondary">
+                            <h2>Your Profile</h2>
+                        </div>
+                        <div class="d-flex col-sm flex-row justify-content-center action-btns align-items-center">
+                            <a class="btn btn-primary" href="/profiles/<%= profile.id %>/edit"><i class="bi bi-pen"></i></a>
+                            <button class="btn btn-danger" onclick="onDelete('<%= profile.id %>')">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="col-lg-12 mb-4 mb-sm-5">
+
+                    <div class="card card-style1 border-0">
+                        <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                            <div class="row align-items-center">
+                                <div class="d-flex justify-content-center col-lg-6 mb-4 mb-lg-0">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="...">
+                                </div>
+                                <div class="col-lg-6 px-xl-10">
+                                    <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                                        <h3 class="h2 text-white mb-0"><%= profile.name %></h3>
+                                    </div>
+                                    <ul class="list-unstyled mb-1-9">
+                                        <li class="mb-2 mb-xl-3 display-28"><span
+                                                    class="display-26 text-secondary me-2 font-weight-600">Email:</span>
+                                            <%= profile.email %>
+                                        </li>
+                                        <li class="mb-2 mb-xl-3 display-28"><span
+                                                    class="display-26 text-secondary me-2 font-weight-600">Tel:</span>
+                                            +1 (555) 123-4567
+                                        </li>
+                                        <li class="mb-2 mb-xl-3 display-28"><span
+                                                    class="display-26 text-secondary me-2 font-weight-600">Address:</span>
+                                            123 Main Street, Anytown, USA
+                                        </li>
+                                    </ul>
+                                    <ul style="font-size: 20px" class="social-icon-style1 list-unstyled mb-0 ps-0 d-flex flex-row justify-content-around">
+                                        <li><a href="#!"><i class="bi-twitter"></i></a></li>
+                                        <li><a href="#!"><i class="bi-facebook"></i></a></li>
+                                        <li><a href="#!"><i class="bi-pinterest"></i></a></li>
+                                        <li><a href="#!"><i class="bi-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Info -->
+                <div class="col-lg-12 mb-4 mb-sm-5">
+                    <div>
+                        <span class="section-title text-primary mb-3 mb-sm-4">About Me</span>
+                        <p>
+                            <%= profile.info %>
+                        </p>
+                    </div>
+                </div>
+                <!-- Offered Products -->
+                <div class="col-lg-12 mb-4 mb-sm-5">
+                    <div class="d-flex justify-content-between">
+                        <span class="section-title text-primary mb-3 mb-sm-4">Products</span>
+                        <!-- Add Products -->
+                        <a class="btn btn-primary" style="height: fit-content"
+                           href="/profiles/<%= profile.id %>/addProduct">Add Product</a>
+                    </div>
+                    <!-- TODO Iterate through it like in users -->
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                    <p>
+                                        Wooden Elephant <strong>30€</strong>
+                                    </p>
+                                </button>
+                            </h2>
+                            <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
+                                    until
+                                    the collapse plugin adds the appropriate classes that we use to style each element.
+                                    These classes control the overall appearance, as well as the showing and hiding via
+                                    CSS
+                                    transitions. You can modify any of this with custom CSS or overriding our default
+                                    variables. It's also worth noting that just about any HTML can go within the
+                                    <code>.accordion-body</code>,
+                                    though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                    <p>
+                                        Wooden Chair <strong>50€</strong>
+                                    </p>
+                                </button>
+                            </h2>
+                            <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
+                                    until
+                                    the collapse plugin adds the appropriate classes that we use to style each element.
+                                    These classes control the overall appearance, as well as the showing and hiding via
+                                    CSS
+                                    transitions. You can modify any of this with custom CSS or overriding our default
+                                    variables. It's also worth noting that just about any HTML can go within the
+                                    <code>.accordion-body</code>,
+                                    though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                    <p>
+                                        Wooden Table <strong>100€</strong>
+                                    </p>
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
+                                    until
+                                    the collapse plugin adds the appropriate classes that we use to style each element.
+                                    These classes control the overall appearance, as well as the showing and hiding via
+                                    CSS
+                                    transitions. You can modify any of this with custom CSS or overriding our default
+                                    variables. It's also worth noting that just about any HTML can go within the
+                                    <code>.accordion-body</code>,
+                                    though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<script>
+    function onDelete(id) {
+        let deleteProfile = confirm("Are you really sure you want to delete this profile?");
+
+        if (deleteProfile) {
+            setTimeout(() => {
+                window.location.href = "/profiles/" + id + "/delete";
+            }, 5); // Add a small delay (5ms) before redirecting because of violation warning
+        } else {
+            setTimeout(() => {
+                window.location.href = "/profiles/" + id;
+            }, 5); // Add a small delay (5ms) before redirecting because of violation warning
+        }
+    }
+</script>
+</body>
+</html>

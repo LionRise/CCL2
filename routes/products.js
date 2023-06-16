@@ -1,26 +1,22 @@
 const express = require("express");
 const router = express.Router();
 
-const userController = require("../controllers/userController.js");
+const productsController = require("../controllers/productsController.js");
 const authenticationService = require("../services/authentication");
 
-// Check if the user is logged in and if the token is valid
-// This function is executed before all following routes! => Important to be on top
-router.use(authenticationService.authenticateJWT); //checks if the user is logged in, before it shows him the user, so it has to be first
+router.get("/", productsController.getProducts);
+router.post("/added", productsController.addProduct);
 
-router.get("/", userController.getUsers);
-router.post("/added", userController.addUser);
+router.get("/:id", productsController.getProductById);
 
-router.get("/:id", userController.getUserById);
-
-// For editing the user
+// For editing the products
 // Actually "put" is for updating and "post" is for creating => just for semester project
-router.get("/:id/edit", userController.editUser);
-router.post("/:id", userController.updateUser);
+router.get("/:id/edit", productsController.editProduct);
+router.post("/:id", productsController.updateProduct);
 
-router.get("/:id/delete", userController.deleteUser);
+router.get("/:id/delete", productsController.deleteProduct);
 
-// request a user picture as a post
+// request a products picture as a post
 router.route("/:id/picture")
     .get((req, res) => {
         let uID = req.params.id;

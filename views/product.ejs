@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/stylePlugin'); %>
+    <title>Products</title>
+    <style>
+        main {
+            width: 90%;
+            margin-top: 100px;
+        }
+
+        .card-style1 {
+            box-shadow: 0 0 10px 0 rgb(89 75 128 / 9%);
+        }
+
+        .border-0 {
+            border: 0 !important;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, .125);
+            border-radius: 0.25rem;
+        }
+
+        section {
+            padding: 25px 0;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .section-title {
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .text-primary {
+            color: #ceaa4d !important;
+        }
+
+        .text-secondary {
+            color: #15395A !important;
+        }
+
+        .font-weight-600 {
+            font-weight: 600;
+        }
+
+        .display-26 {
+            font-size: 1.3rem;
+        }
+
+        @media screen and (min-width: 992px) {
+            .p-lg-7 {
+                padding: 4rem;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            .p-md-6 {
+                padding: 3.5rem;
+            }
+        }
+
+        @media screen and (min-width: 576px) {
+            .p-sm-2-3 {
+                padding: 2.3rem;
+            }
+        }
+
+        .p-1-9 {
+            padding: 1.9rem;
+        }
+
+        .bg-secondary {
+            background: #15395A !important;
+        }
+
+        @media screen and (min-width: 576px) {
+            .px-sm-6 {
+                padding-right: 3.5rem;
+            }
+        }
+
+        @media screen and (min-width: 576px) {
+            .px-sm-6 {
+                padding-left: 3.5rem;
+            }
+        }
+
+        .px-1-9 {
+            padding-right: 1.9rem;
+        }
+
+        .px-1-9 {
+            padding-left: 1.9rem;
+        }
+
+        .py-1-9 {
+            padding-bottom: 1.9rem;
+        }
+
+        .py-1-9 {
+            padding-top: 1.9rem;
+        }
+
+        .mb-1-9 {
+            margin-bottom: 1.9rem;
+        }
+
+        @media (min-width: 992px) {
+            .d-lg-inline-block {
+                display: inline-block !important;
+            }
+        }
+
+        .rounded {
+            border-radius: 0.25rem !important;
+        }
+
+        btn {
+            cursor: pointer;
+        }
+
+        .responsive {
+            width: 100%;
+            height: auto;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<header><%- include('./partials/navBar'); %></header>
+<main>
+
+    <div class="d-flex">
+        <div class="row">
+            <div class="col-10">
+                <div class="d-flex flex-row justify-content-evenly">
+                    <!-- Product -->
+                    <section class="py-5 col-8 me-2">
+                        <div class="container">
+                            <div class="row gx-5">
+                                <h4 class="title text-dark">
+                                    Quality Men's Hoodie for Winter, Men's Fashion Casual Hoodie
+                                </h4>
+                                <aside class="col-lg-6">
+                                    <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                                        <a data-fslightbox="mygalley" class="rounded-4" target="_blank"
+                                           data-type="image"
+                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp">
+                                            <img style="max-width: 100%; max-height: 100vh; margin: auto;"
+                                                 class="rounded-4 fit"
+                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp"/>
+                                        </a>
+                                    </div>
+                                    <div class="d-flex justify-content-center mb-3">
+                                        <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank"
+                                           data-type="image"
+                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big1.webp"
+                                           class="item-thumb">
+                                            <img width="60" height="60" class="rounded-2"
+                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big1.webp"/>
+                                        </a>
+                                        <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank"
+                                           data-type="image"
+                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big2.webp"
+                                           class="item-thumb">
+                                            <img width="60" height="60" class="rounded-2"
+                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big2.webp"/>
+                                        </a>
+                                        <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank"
+                                           data-type="image"
+                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big3.webp"
+                                           class="item-thumb">
+                                            <img width="60" height="60" class="rounded-2"
+                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big3.webp"/>
+                                        </a>
+                                        <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank"
+                                           data-type="image"
+                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big4.webp"
+                                           class="item-thumb">
+                                            <img width="60" height="60" class="rounded-2"
+                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big4.webp"/>
+                                        </a>
+                                        <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank"
+                                           data-type="image"
+                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp"
+                                           class="item-thumb">
+                                            <img width="60" height="60" class="rounded-2"
+                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp"/>
+                                        </a>
+                                    </div>
+                                    <!-- thumbs-wrap.// -->
+                                    <!-- gallery-wrap .end// -->
+                                </aside>
+                                <section class="col-lg-6">
+                                    <div class="ps-lg-3">
+                                        <div class="d-flex flex-row my-3">
+                                            <div class="text-warning mb-1 me-2">
+                                                <i class="bi bi-star"></i>
+                                                <i class="bi bi-star"></i>
+                                                <i class="bi bi-star"></i>
+                                                <i class="bi bi-star"></i>
+                                                <i class="bi bi-star-half"></i>
+                                                <span class="ms-1">
+                4.5
+              </span>
+                                            </div>
+                                            <span class="text-muted"><i
+                                                        class="bi bi-shopping-basket fa-sm mx-1"></i>154 orders</span>
+                                            <span class="text-success ms-2">In stock</span>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <span class="h5">$75.00</span>
+                                            <span class="text-muted">/per box</span>
+                                        </div>
+
+                                        <p>
+                                            Modern look and quality demo item is a streetwear-inspired collection
+                                            that
+                                            continues
+                                            to
+                                            break away from the conventions of mainstream fashion. Made in Italy,
+                                            these
+                                            black
+                                            and brown
+                                            clothing low-top shirts for
+                                            men.
+                                        </p>
+
+                                        <div class="row">
+                                            <dt class="col-3">Type:</dt>
+                                            <dd class="col-9">Regular</dd>
+
+                                            <dt class="col-3">Color</dt>
+                                            <dd class="col-9">Brown</dd>
+
+                                            <dt class="col-3">Material</dt>
+                                            <dd class="col-9">Cotton, Jeans</dd>
+
+                                            <dt class="col-3">Brand</dt>
+                                            <dd class="col-9">Reebook</dd>
+                                        </div>
+
+                                        <hr/>
+
+                                        <div class="row mb-0">
+                                            <div class="col-md-4 col-6">
+                                                <label class="mb-2">Size</label>
+                                                <select class="form-select border border-secondary"
+                                                        style="height: 35px;">
+                                                    <option>Small</option>
+                                                    <option>Medium</option>
+                                                    <option>Large</option>
+                                                </select>
+                                            </div>
+                                            <!-- col.// -->
+                                            <div class="col-md-4 col-6 mb-3">
+                                                <label class="mb-2 d-block">Quantity</label>
+                                                <div class="input-group mb-3" style="width: 170px;">
+                                                    <button class="btn btn-white border border-secondary px-3"
+                                                            type="button"
+                                                            id="button-addon1" data-mdb-ripple-color="dark">
+                                                        -
+                                                    </button>
+                                                    <input type="text"
+                                                           class="form-control text-center border border-secondary"
+                                                           placeholder="14"
+                                                           aria-label="Example text with button addon"
+                                                           aria-describedby="button-addon1"/>
+                                                    <button class="btn btn-white border border-secondary px-3"
+                                                            type="button"
+                                                            id="button-addon2" data-mdb-ripple-color="dark">
+                                                        +
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="btn btn-primary shadow-0"> <i
+                                                        class="me-1 bi bi-cart"></i>
+                                                Add to cart </a>
+                                            <a href="#"
+                                               class="btn btn-light border border-secondary py-2 icon-hover px-3">
+                                                <i class="me-1 bi bi-heart fa-lg"></i> Save </a>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Card -->
+                    <div class="py-5 col-4 ms-2">
+                        <!-- Card -->
+                        <div class="card card-style1 border-0">
+                            <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                                <div class="row align-items-center">
+                                    <div class="d-flex justify-content-center col-lg-6 mb-4 mb-lg-0">
+                                        <img class="responsive" src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                             alt="...">
+                                    </div>
+                                    <div class="col-lg-6 px-xl-10">
+                                        <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                                            <h3 class="h2 text-white mb-0">Ethan Walker'</h3>
+                                        </div>
+                                        <ul class="list-unstyled mb-1-9">
+                                            <li class="mb-2 mb-xl-3 display-28"><span
+                                                        class="display-26 text-secondary me-2 font-weight-600">Email:</span>
+                                                ethanwalker@email.com'
+                                            </li>
+                                            <li class="mb-2 mb-xl-3 display-28"><span
+                                                        class="display-26 text-secondary me-2 font-weight-600">Tel:</span>
+                                                +1 (555) 123-4567
+                                            </li>
+                                            <li class="mb-2 mb-xl-3 display-28"><span
+                                                        class="display-26 text-secondary me-2 font-weight-600">Address:</span>
+                                                123 Main Street, Anytown, USA
+                                            </li>
+                                        </ul>
+                                        <ul style="font-size: 20px"
+                                            class="social-icon-style1 list-unstyled mb-0 ps-0 d-flex flex-row justify-content-around">
+                                            <li><a href="#!"><i class="bi-twitter"></i></a></li>
+                                            <li><a href="#!"><i class="bi-facebook"></i></a></li>
+                                            <li><a href="#!"><i class="bi-pinterest"></i></a></li>
+                                            <li><a href="#!"><i class="bi-instagram"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="d-flex flex-row justify-content-around flex-wrap">
+                                        <btn class="btn btn-primary mt-3">Message Seller</btn>
+                                        <btn class="btn btn-warning mt-3"><i class="bi bi-cash"></i> Instant buy</btn>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class="bg-light border-top py-4">
+                    <div class="container">
+                        <div class="row gx-4">
+                            <div>
+                                <div class="border rounded-2 px-3 py-2 bg-white">
+                                    <!-- Pills content -->
+                                    <div class="tab-content" id="ex1-content">
+                                        <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel"
+                                             aria-labelledby="ex1-tab-1">
+                                            <p>
+                                                With supporting text below as a natural lead-in to additional content.
+                                                Lorem ipsum
+                                                dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                                incididunt ut
+                                                labore et dolore magna aliqua. Ut
+                                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                                aliquip ex
+                                                ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                                                voluptate velit esse
+                                                cillum dolore eu fugiat nulla
+                                                pariatur.
+                                            </p>
+                                            <div class="row mb-2">
+                                                <div class="col-12 col-md-6">
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><i class="bi bi-check text-success me-2"></i>Some great
+                                                            feature name
+                                                            here
+                                                        </li>
+                                                        <li><i class="bi bi-check text-success me-2"></i>Lorem ipsum
+                                                            dolor sit
+                                                            amet, consectetur
+                                                        </li>
+                                                        <li><i class="bi bi-check text-success me-2"></i>Duis aute irure
+                                                            dolor in
+                                                            reprehenderit
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-12 col-md-6 mb-0">
+                                                    <ul class="list-unstyled">
+                                                        <li><i class="bi bi-check text-success me-2"></i>Easy fast and
+                                                            ver good
+                                                        </li>
+                                                        <li><i class="bi bi-check text-success me-2"></i>Some great
+                                                            feature name
+                                                            here
+                                                        </li>
+                                                        <li><i class="bi bi-check text-success me-2"></i>Modern style
+                                                            and design
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Pills content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+            <!-- Favourites Sidebar -->
+            <!-- TODO for i in range (like in users) for the favourite product cards -->
+            <div class="col-2">
+                <!-- Toggle button -->
+                <button
+                        class="btn btn-outline-secondary mb-3 w-50 d-lg-none"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarSupportedContent1"
+                        aria-controls="navbarSupportedContent1"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <span>Show filter</span>
+                </button>
+                <!-- Collapsible wrapper -->
+                <div class="collapse card d-lg-block mb-5" id="navbarSupportedContent1">
+                    <h3 style="margin-left: 5%; margin-bottom: 0; margin-top: 5%">Favourites</h3>
+                    <div class="d-flex flex-column justify-content-end">
+                        <div style="width: 90%; margin: 5%">
+                            <div class="card w-100 my-2 shadow-2-strong">
+                                <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/1.webp"
+                                     class="card-img-top" style="aspect-ratio: 1 / 1"/>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">GoPro HERO6 4K Action Camera - Black</h5>
+                                    <p class="card-text">$790.50</p>
+                                    <div class="card-footer d-flex justify-content-between align-items-end px-0 pb-0 mt-auto">
+                                        <a href="#!" class="btn btn-primary shadow-0 me-1 fa-lg px-1">Add to cart
+                                            <i class="bi bi-cart"></i>
+                                        </a>
+                                        <a href="#!" class="btn btn-light border px-2 pt-2">
+                                            <i class="bi bi-heart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 90%; margin: 5%">
+                            <div class="card w-100 my-2 shadow-2-strong">
+                                <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/1.webp"
+                                     class="card-img-top" style="aspect-ratio: 1 / 1"/>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">GoPro HERO6 4K Action Camera - Black</h5>
+                                    <p class="card-text">$790.50</p>
+                                    <div class="card-footer d-flex justify-content-between align-items-end px-0 pb-0 mt-auto">
+                                        <a href="#!" class="btn btn-primary shadow-0 me-1 fa-lg px-1">Add to cart
+                                            <i class="bi bi-cart"></i>
+                                        </a>
+                                        <a href="#!" class="btn btn-light border px-2 pt-2">
+                                            <i class="bi bi-heart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 90%; margin: 5%">
+                            <div class="card w-100 my-2 shadow-2-strong">
+                                <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/1.webp"
+                                     class="card-img-top" style="aspect-ratio: 1 / 1"/>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">GoPro HERO6 4K Action Camera - Black</h5>
+                                    <p class="card-text">$790.50</p>
+                                    <div class="card-footer d-flex justify-content-between align-items-end px-0 pb-0 mt-auto">
+                                        <a href="#!" class="btn btn-primary shadow-0 me-1 fa-lg px-1">Add to cart
+                                            <i class="bi bi-cart"></i>
+                                        </a>
+                                        <a href="#!" class="btn btn-light border px-2 pt-2">
+                                            <i class="bi bi-heart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+
+</html>

@@ -9,32 +9,41 @@ async function checkPassword(password, hash) {
 }
 
 let loggedin = false;
+let id = 0;
 
-//This function is used to authenticate the user
-async function authenticateUser({email, password}, users, res, next) {
-    const user = users.find(u => {
+//This function is used to authenticate the profile
+async function authenticateProfile({email, password}, profiles, res, next) {
+    const profile = profiles.find(u => {
         return u.email === email;
     });
+    //If the profile exists and the password is correct, we create a token and redirect the profile to the profile page
+    if(profile && await checkPassword(password, profile.password)) {
+        id = profile.id;
 
-    //If the user exists and the password is correct, we create a token and redirect the user to the user page
-    if(user && await checkPassword(password, user.password)) {
-        const accessToken = jwt.sign({ id: user.id, name: user.name }, ACCESS_TOKEN_SECRET, { expiresIn: '30m' });
+        const accessToken = jwt.sign({ id: profile.id, name: profile.name }, ACCESS_TOKEN_SECRET, { expiresIn: '30m' });
         loggedin = true;
-        res.cookie("accessToken", accessToken, loggedin);
-        res.redirect("/users/" + user.id);
+        res.cookie("accessToken", accessToken);
+        res.cookie("profileid", profile.id)
+        res.cookie("profilename", profile.name)
+        res.redirect("/profiles/" + profile.id);
     } else {
         next("Email or password incorrect!");
     }
 }
 
-function goToProfile(user, res, loggedin, next) {
+function goToProfile(profile, res, loggedin, next) {
+
     if (!loggedin) {
         res.render("login");
-        console.log("User is not logged in");
+        console.log("Profile is not logged in");
     } else {
-        res.redirect("/users/" + user.id);
-        console.log("User is logged in");
+        res.redirect("/profiles/" + profile.id);
+        console.log("Profile is logged in");
     }
+}
+
+function getProfileUrl() {
+    return "/profiles/" + id;
 }
 
 //This function is used to authenticate the JWT
@@ -43,12 +52,12 @@ function authenticateJWT(req, res, next) {
 
     //If the token exists, we verify it
     if(token) {
-        jwt.verify(token, ACCESS_TOKEN_SECRET, (err, user) => {
+        jwt.verify(token, ACCESS_TOKEN_SECRET, (err, profile) => {
             if(err) {
                 next("Not logged in");
             }
-            console.log(user);
-            req.user = user;
+            console.log(profile);
+            req.profile = profile;
             next();
         });
     } else {
@@ -57,8 +66,9 @@ function authenticateJWT(req, res, next) {
 }
 
 module.exports = {
-    authenticateUser,
+    authenticateProfile,
     authenticateJWT,
     goToProfile,
     loggedin,
+    getProfileUrl
 }
