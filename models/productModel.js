@@ -1,5 +1,4 @@
 const db = require("../services/database").config;
-const bcrypt = require("bcrypt");
 
 // Handles the database calls for the product routes
 let getProducts = () => new Promise((resolve, reject) => {
@@ -26,12 +25,10 @@ let getProductById = (id) => new Promise((resolve, reject) => {
 
 
 let updateProduct = (productData, id) => new Promise(async (resolve, reject) => {
-    productData.password = await bcrypt.hash(productData.password, 10);
     let sql = "UPDATE products SET " +
-        "name = " + db.escape(productData.name) +
-        ", email = " + db.escape(productData.email) +
-        ", info = " + db.escape(productData.info) +
-        ", password = " + db.escape(productData.password) +
+        "title = " + db.escape(productData.title) +
+        ", price = " + db.escape(productData.price) +
+        ", description = " + db.escape(productData.description) +
         " WHERE id = " + parseInt(id);
 
     console.log(sql);
@@ -47,12 +44,10 @@ let updateProduct = (productData, id) => new Promise(async (resolve, reject) => 
 });
 
 let addProduct = (productData) => new Promise(async (resolve, reject) => {
-    productData.password = await bcrypt.hash(productData.password, 10);
-    let sql = "INSERT INTO products (name, email, info, password) VALUES (" +
-        db.escape(productData.name) +
-        ", " + db.escape(productData.email) +
-        ", " + db.escape(productData.info) +
-        ", " + db.escape(productData.password) + ")";
+    let sql = "INSERT INTO products (title, price, description) VALUES (" +
+        db.escape(productData.title) +
+        ", " + db.escape(productData.price) +
+        ", " + db.escape(productData.description) + ")";
 
     console.log(sql);
 

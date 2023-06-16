@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <header><%- include('./partials/navBar'); %></header>
+    <header style="z-index: 3"><%- include('./partials/navBar'); %></header>
     <main class="d-flex justify-content-center">
         <form action="/profiles/<%= profile.id %>" method="post" id="add-profile-form" class="shadow-lg p-3 mb-5 bg-white rounded d-flex flex-column">
             <img src="/images/man.png" width="150px" style="align-self: center;">

@@ -31,8 +31,8 @@ app.use(fileUpload({
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
-const fs = require("fs");
-const morgan = require("morgan");
+const fs = require("fs"); // file system
+const morgan = require("morgan"); // logging
 // create a write stream (in append mode) (every time a request comes in, we want to write a new line)
 const accessLogStream = fs.createWriteStream(path.join(__dirname, './logs/requests.log'), { flags: 'a' });
 // write detailed logs into the specified file (write the request in combined format = much information into the accessLogStream)
@@ -43,9 +43,11 @@ app.use(morgan('short'));
 // Calling the routers
 const indexRouter = require("./routes/index.js");
 const profilesRouter = require("./routes/profiles.js");
+const productsRouter = require("./routes/products.js");
 
 app.use("/", indexRouter);
 app.use("/profiles", profilesRouter);
+app.use("/products", productsRouter);
 app.locals = require('./services/authentication')
 
 function errorHandler(err, req, res, next) {

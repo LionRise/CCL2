@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+const productController = require("../controllers/productController.js");
 const profileController = require("../controllers/profileController.js");
 const authenticationService = require("../services/authentication");
 

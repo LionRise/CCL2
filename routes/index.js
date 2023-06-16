@@ -3,6 +3,8 @@ const router = express.Router();
 
 const profileController = require("../controllers/profileController.js");
 const profileModel = require("../models/profileModel");
+const productController = require("../controllers/productController.js");
+const productModel = require("../models/productModel");
 const authenticationService = require("../services/authentication");
 
 let storage = {};
@@ -17,19 +19,29 @@ router.route("/myProfile")
         authenticationService.goToProfile(req.profile, res, next);
     });
 
-router.get("/products", (req, res) => {
-    // send the rendered page
-    res.render("products");
+router.get('/products', async (req, res, next) => {
+    try {
+        // Fetch the products from the database
+        const products = await productModel.getProducts(); // Assuming getProducts() returns a promise
+        const profiles = await profileModel.getProfiles(); // Assuming getProducts() returns a promise
+
+        console.log(products);
+
+        // Render the template and pass the products
+        res.render('products', {products: products, profiles: profiles});
+    } catch (error) {
+        // Handle the error appropriately
+        console.error('Error fetching products:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
-router.get("/product", (req, res) => {
-    // send the rendered page
-    res.render("product");
-});
 
 
 router.route("/login")
-    .get((req, res, next) => res.render("login"))
+    .get((req, res, next) => {
+        res.render("login")
+    })
     .post((req, res, next) => {
         profileModel.getProfiles()
             .then((profiles) => {
@@ -52,6 +64,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/", profileController.register);
+router.post("/", productController.register);
 
 router.get("/addProfile", (req, res) => {
     res.render("addProfile");

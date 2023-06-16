@@ -9,9 +9,35 @@
     <title>Server Side Coding</title>
 </head>
 
-<body>
-<header><%- include('./partials/navBar'); %></header>
-<main>
+<body style="width: 100%">
+<header style="z-index: 3"><%- include('./partials/navBar'); %></header>
+<main style="width: 98%">
+
+    <% for(let i = 0; i < products.length; i++) { %>
+        <!-- For each user, add a user card -->
+        <a class="profile-card shadow bg-white mb-5 rounded" href="/products/<%= products[i].id %>">
+            <!-- And some data -->
+            <div class="d-flex flex-column">
+                <strong>
+                    <%= products[i].title %>
+                    <%= products[i].price %>
+                </strong>
+                <p>
+                    <%= products[i].description %>
+                </p>
+            </div>
+        </a>
+    <% } %>
+
+    <% for(let i = 0; i < profiles.length; i++) { %>
+        <!-- For each user, add a user card -->
+        <a class="profile-card shadow bg-white mb-5 rounded" href="/profiles/<%= profiles[i].id %>">
+            <!-- And some data -->
+            <div class="d-flex flex-column">
+                    <%= profiles[i].name %>
+            </div>
+        </a>
+    <% } %>
 
     <!-- sidebar + content -->
     <section class="">
@@ -765,4 +791,5 @@
 </main>
 </body>
 </html>
+
 

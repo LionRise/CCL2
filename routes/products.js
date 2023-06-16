@@ -1,22 +1,21 @@
 const express = require("express");
 const router = express.Router();
 
-const productsController = require("../controllers/productsController.js");
-const authenticationService = require("../services/authentication");
+const productController = require("../controllers/productController.js");
 
-router.get("/", productsController.getProducts);
-router.post("/added", productsController.addProduct);
+router.get("/", productController.getProducts);
+router.post("/added", productController.addProduct);
 
-router.get("/:id", productsController.getProductById);
+router.get("/:id", productController.getProductById);
 
-// For editing the products
+// For editing the product
 // Actually "put" is for updating and "post" is for creating => just for semester project
-router.get("/:id/edit", productsController.editProduct);
-router.post("/:id", productsController.updateProduct);
+router.get("/:id/edit", productController.editProduct);
+router.post("/:id", productController.updateProduct);
 
-router.get("/:id/delete", productsController.deleteProduct);
+router.get("/:id/delete", productController.deleteProduct);
 
-// request a products picture as a post
+// request a product picture as a post
 router.route("/:id/picture")
     .get((req, res) => {
         let uID = req.params.id;
@@ -35,7 +34,7 @@ router.route("/:id/picture")
                     message: "No file uploaded",
                 });
             } else {
-                // handle how to safe the picture
+                // handle how to save the picture
                 let picture = req.files.picture;
 
                 let filename = "./uploads/" + req.params.id + ".jpg";

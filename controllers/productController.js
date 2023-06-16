@@ -4,7 +4,7 @@ const productModel = require("../models/productModel.js");
 function getProducts(req, res, next) {
     productModel.getProducts()
         .then((products) => {
-            res.render("products", {products});
+            res.render("products", { products });
         })
         .catch((err) => {
             res.status(404);
@@ -16,7 +16,7 @@ function getProducts(req, res, next) {
 function getProductById(req, res, next) {
     productModel.getProductById(parseInt(req.params.id))
         .then((product) => {
-            res.render("product", {product});
+            res.render("product", { product });
         })
         .catch((err) => {
             res.status(404);
@@ -28,7 +28,7 @@ function getProductById(req, res, next) {
 function editProduct(req, res, next) {
     productModel.getProductById(parseInt(req.params.id))
         .then((product) => {
-            res.render("editProduct", {product});
+            res.render("editProduct", { product });
         })
         .catch((err) => {
             res.status(404);
@@ -40,7 +40,7 @@ function editProduct(req, res, next) {
 function updateProduct(req, res, next) {
     productModel.updateProduct(req.body, req.params.id)
         .then((product) => {
-            res.render("product", {product});
+            res.render("product", { product });
         })
         .catch((err) => {
             res.status(404);
@@ -52,7 +52,7 @@ function updateProduct(req, res, next) {
 function addProduct(req, res, next) {
     productModel.addProduct(req.body)
         .then((product) => {
-            res.render("product", {product});
+            res.render("product", { product });
         })
         .catch((err) => {
             res.status(404);
