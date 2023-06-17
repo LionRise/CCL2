@@ -7,21 +7,25 @@ let getProfiles = () => new Promise((resolve, reject) => {
         if(err) {
             reject(err);
         } else {
-            console.log(profiles);
+            console.log(db, "getProfiles");
             resolve(profiles);
         }
     });
 });
 
 let getProfileById = (id) => new Promise((resolve, reject) => {
-    db.query(`SELECT * FROM profiles WHERE id = ${id}`, function(err, profile, fields) {
-        if(err) {
-            reject(err);
-        } else {
-            console.log(profile[0]);
-            resolve(profile[0]);
-        }
-    });
+    db.query(`SELECT profiles.*, products.*
+              FROM profiles
+              JOIN products ON profiles.id = products.fk_profileid
+              WHERE profiles.id = ${id};`,
+        function(err, products, fields) {
+            if(err) {
+                reject(err);
+            } else {
+                console.log(products[0], "products[0]");
+                resolve(products[0]);
+            }
+        });
 });
 
 

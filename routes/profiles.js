@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const productController = require("../controllers/productController.js");
 const profileController = require("../controllers/profileController.js");
+const productController = require("../controllers/productController.js");
 const authenticationService = require("../services/authentication");
 
 // Check if the profile is logged in and if the token is valid

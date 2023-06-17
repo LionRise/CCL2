@@ -6,7 +6,7 @@ let getProducts = () => new Promise((resolve, reject) => {
         if (err) {
             reject(err);
         } else {
-            console.log(products);
+            console.log(products, "getProducts");
             resolve(products);
         }
     });
@@ -17,7 +17,7 @@ let getProductById = (id) => new Promise((resolve, reject) => {
         if (err) {
             reject(err);
         } else {
-            console.log(product[0]);
+            console.log(product[0],"getProductById");
             resolve(product[0]);
         }
     });

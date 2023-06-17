@@ -35,9 +35,10 @@ router.route("/:id/picture")
                 });
             } else {
                 // handle how to save the picture
-                let picture = req.files.picture;
+                let picture = req.files['undefined'];
+                let uuidfilename = uuidv4() + ".jpg";
 
-                let filename = "./uploads/" + req.params.id + ".jpg";
+                let filename = "./uploads/" + uuidfilename;
                 picture.mv(filename);
                 console.log("Picture saved to " + filename);
 
@@ -51,8 +52,15 @@ router.route("/:id/picture")
                 });
             }
         } catch (err) {
+            console.log(err)
             res.status(500).send(err);
         }
     });
+
+function uuidv4() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+}
 
 module.exports = router;

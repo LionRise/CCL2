@@ -1,10 +1,11 @@
 const profileModel = require("../models/profileModel.js");
+const productModel = require("../models/productModel");
 
 //Gets the profiles from the database and renders the profiles (all profiles)
 function getProfiles(req, res, next) {
     profileModel.getProfiles()
         .then((profiles) => {
-            res.render("profiles", { profiles });
+            res.render("profiles", {profiles});
         })
         .catch((err) => {
             res.status(404);
@@ -13,7 +14,7 @@ function getProfiles(req, res, next) {
 }
 
 //Gets a profile by id from the database and renders the profile page (single profile)
-function getProfileById(req, res, next) {
+/*function getProfileById(req, res, next) {
     profileModel.getProfileById(parseInt(req.params.id))
         .then((profile) => {
             res.render("profile", { profile });
@@ -22,13 +23,29 @@ function getProfileById(req, res, next) {
             res.status(404);
             next(err)
         });
+}*/
+
+function getProfileById(req, res, next) {
+    Promise.all([
+        profileModel.getProfileById(parseInt(req.params.id)),
+        productModel.getProducts()
+    ])
+        .then(([profile, products]) => {
+            profile.id = req.params.id;
+            res.render("profile", {profile, products});
+        })
+        .catch((err) => {
+            res.status(404);
+            next(err);
+        });
 }
+
 
 //Gets a profile by id from the database and renders the editProfile page
 function editProfile(req, res, next) {
     profileModel.getProfileById(parseInt(req.params.id))
         .then((profile) => {
-            res.render("editProfile", { profile });
+            res.render("editProfile", {profile});
         })
         .catch((err) => {
             res.status(404);
@@ -40,7 +57,7 @@ function editProfile(req, res, next) {
 function updateProfile(req, res, next) {
     profileModel.updateProfile(req.body, req.params.id)
         .then((profile) => {
-            res.render("profile", { profile });
+            res.render("profile", {profile});
         })
         .catch((err) => {
             res.status(404);
@@ -52,7 +69,7 @@ function updateProfile(req, res, next) {
 function addProfile(req, res, next) {
     profileModel.addProfile(req.body)
         .then((profile) => {
-            res.render("profile", { profile });
+            res.render("profile", {profile});
         })
         .catch((err) => {
             res.status(404);

@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const productModel = require("../models/productModel");
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 
@@ -70,5 +71,6 @@ module.exports = {
     authenticateJWT,
     goToProfile,
     loggedin,
-    getProfileUrl
+    getProfileUrl,
+    id,
 }

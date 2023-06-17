@@ -142,6 +142,17 @@
 <body style="width: 100%">
 <header style="z-index: 3"><%- include('./partials/navBar'); %></header>
 <main>
+
+    <% for (let i = 0; i < products.length; i++) { %>
+        <% if (products[i].fk_profileid == profile.id) { %>
+            <div class="d-flex flex-column product-entry">
+                <strong><%= products[i].id %></strong>
+                <strong><%= products[i].title %></strong>
+                <strong><%= products[i].price %></strong>
+            </div>
+        <% } %>
+    <% } %>
+
     <section class="bg-light">
         <div class="container">
             <div class="row">
@@ -185,7 +196,8 @@
                                             123 Main Street, Anytown, USA
                                         </li>
                                     </ul>
-                                    <ul style="font-size: 20px" class="social-icon-style1 list-unstyled mb-0 ps-0 d-flex flex-row justify-content-around">
+                                    <ul style="font-size: 20px"
+                                        class="social-icon-style1 list-unstyled mb-0 ps-0 d-flex flex-row justify-content-around">
                                         <li><a href="#!"><i class="bi-twitter"></i></a></li>
                                         <li><a href="#!"><i class="bi-facebook"></i></a></li>
                                         <li><a href="#!"><i class="bi-pinterest"></i></a></li>
@@ -201,7 +213,7 @@
                     <div>
                         <span class="section-title text-primary mb-3 mb-sm-4">About Me</span>
                         <p>
-                            <%= profile.info %>
+                            <%= profile.id %>
                         </p>
                     </div>
                 </div>

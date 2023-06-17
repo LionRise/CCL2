@@ -39,9 +39,7 @@ router.get('/products', async (req, res, next) => {
 
 
 router.route("/login")
-    .get((req, res, next) => {
-        res.render("login")
-    })
+    .get((req, res, next) => res.render("login"))
     .post((req, res, next) => {
         profileModel.getProfiles()
             .then((profiles) => {
