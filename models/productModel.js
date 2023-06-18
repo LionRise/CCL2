@@ -13,11 +13,12 @@ let getProducts = () => new Promise((resolve, reject) => {
 });
 
 let getProductById = (id) => new Promise((resolve, reject) => {
-    db.query(`SELECT * FROM products WHERE id = ${id}`, function (err, product, fields) {
+    db.query(`SELECT products.*, profiles.* FROM products JOIN profiles ON products.fk_profileid = profiles.id WHERE products.id = ${id}`, function (err, product, fields) {
         if (err) {
             reject(err);
         } else {
             console.log(product[0],"getProductById");
+
             resolve(product[0]);
         }
     });
@@ -28,6 +29,7 @@ let updateProduct = (productData, id) => new Promise(async (resolve, reject) => 
     let sql = "UPDATE products SET " +
         "title = " + db.escape(productData.title) +
         ", price = " + db.escape(productData.price) +
+        ", state = " + db.escape(productData.state) +
         ", description = " + db.escape(productData.description) +
         " WHERE id = " + parseInt(id);
 
@@ -43,20 +45,28 @@ let updateProduct = (productData, id) => new Promise(async (resolve, reject) => 
     });
 });
 
-let addProduct = (productData) => new Promise(async (resolve, reject) => {
-    let sql = "INSERT INTO products (title, price, description) VALUES (" +
+let addProduct = (productData) => new Promise((resolve, reject) => {
+    let sql = "INSERT INTO products (title, price, state, description, fk_profileid, productPicName) VALUES (" +
         db.escape(productData.title) +
         ", " + db.escape(productData.price) +
-        ", " + db.escape(productData.description) + ")";
-
-    console.log(sql);
+        ", " + db.escape(productData.state) +
+        ", " + db.escape(productData.description) +
+        ", " + db.escape(productData.fk_profileid) +
+        ", " + db.escape(productData.productPicName) +
+        ")";
 
     db.query(sql, function (err, result, fields) {
         if (err) {
             reject(err);
+        } else {
+            // Check if the insertId property exists in the result object
+            if (result && result.insertId) {
+                productData.insertId = result.insertId;
+                resolve(productData);
+            } else {
+                reject(new Error("Failed to retrieve the insertId"));
+            }
         }
-        productData.id = result.insertId;
-        resolve(productData);
     });
 });
 

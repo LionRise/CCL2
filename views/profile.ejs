@@ -143,16 +143,6 @@
 <header style="z-index: 3"><%- include('./partials/navBar'); %></header>
 <main>
 
-    <% for (let i = 0; i < products.length; i++) { %>
-        <% if (products[i].fk_profileid == profile.id) { %>
-            <div class="d-flex flex-column product-entry">
-                <strong><%= products[i].id %></strong>
-                <strong><%= products[i].title %></strong>
-                <strong><%= products[i].price %></strong>
-            </div>
-        <% } %>
-    <% } %>
-
     <section class="bg-light">
         <div class="container">
             <div class="row">
@@ -213,7 +203,7 @@
                     <div>
                         <span class="section-title text-primary mb-3 mb-sm-4">About Me</span>
                         <p>
-                            <%= profile.id %>
+                            <%= profile.info %>
                         </p>
                     </div>
                 </div>
@@ -223,81 +213,34 @@
                         <span class="section-title text-primary mb-3 mb-sm-4">Products</span>
                         <!-- Add Products -->
                         <a class="btn btn-primary" style="height: fit-content"
-                           href="/profiles/<%= profile.id %>/addProduct">Add Product</a>
+                           href="/addProduct">Add Product</a>
                     </div>
-                    <!-- TODO Iterate through it like in users -->
+
                     <div class="accordion" id="accordionExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-                                    <p>
-                                        Wooden Elephant <strong>30€</strong>
-                                    </p>
-                                </button>
-                            </h2>
-                            <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                                    until
-                                    the collapse plugin adds the appropriate classes that we use to style each element.
-                                    These classes control the overall appearance, as well as the showing and hiding via
-                                    CSS
-                                    transitions. You can modify any of this with custom CSS or overriding our default
-                                    variables. It's also worth noting that just about any HTML can go within the
-                                    <code>.accordion-body</code>,
-                                    though the transition does limit overflow.
+                        <% for(let i = 0; i < products.length; i++) { %>
+                            <% if (products[i].fk_profileid == profile.id) { %>
+                                <div class="d-flex flex-column product-entry">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse1" aria-expanded="false"
+                                                    aria-controls="collapse1">
+                                                <p>
+                                                    <%= products[i].title %> <strong><%= products[i].price %>€</strong>
+                                                </p>
+                                            </button>
+                                        </h2>
+                                        <div id="collapse1" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <%= products[i].description %>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                    <p>
-                                        Wooden Chair <strong>50€</strong>
-                                    </p>
-                                </button>
-                            </h2>
-                            <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                                    until
-                                    the collapse plugin adds the appropriate classes that we use to style each element.
-                                    These classes control the overall appearance, as well as the showing and hiding via
-                                    CSS
-                                    transitions. You can modify any of this with custom CSS or overriding our default
-                                    variables. It's also worth noting that just about any HTML can go within the
-                                    <code>.accordion-body</code>,
-                                    though the transition does limit overflow.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                    <p>
-                                        Wooden Table <strong>100€</strong>
-                                    </p>
-                                </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse"
-                                 data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                                    until
-                                    the collapse plugin adds the appropriate classes that we use to style each element.
-                                    These classes control the overall appearance, as well as the showing and hiding via
-                                    CSS
-                                    transitions. You can modify any of this with custom CSS or overriding our default
-                                    variables. It's also worth noting that just about any HTML can go within the
-                                    <code>.accordion-body</code>,
-                                    though the transition does limit overflow.
-                                </div>
-                            </div>
-                        </div>
+                            <% } %>
+                        <% } %>
                     </div>
                 </div>
             </div>

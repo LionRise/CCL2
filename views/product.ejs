@@ -158,58 +158,9 @@
                         <div class="container">
                             <div class="row gx-5">
                                 <h4 class="title text-dark">
-                                    Quality Men's Hoodie for Winter, Men's Fashion Casual Hoodie
+                                    <%= product.title %>
                                 </h4>
-                                <aside class="col-lg-6">
-                                    <div class="border rounded-4 mb-3 d-flex justify-content-center">
-                                        <a data-fslightbox="mygalley" class="rounded-4" target="_blank"
-                                           data-type="image"
-                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp">
-                                            <img style="max-width: 100%; max-height: 100vh; margin: auto;"
-                                                 class="rounded-4 fit"
-                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp"/>
-                                        </a>
-                                    </div>
-                                    <div class="d-flex justify-content-center mb-3">
-                                        <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank"
-                                           data-type="image"
-                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big1.webp"
-                                           class="item-thumb">
-                                            <img width="60" height="60" class="rounded-2"
-                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big1.webp"/>
-                                        </a>
-                                        <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank"
-                                           data-type="image"
-                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big2.webp"
-                                           class="item-thumb">
-                                            <img width="60" height="60" class="rounded-2"
-                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big2.webp"/>
-                                        </a>
-                                        <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank"
-                                           data-type="image"
-                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big3.webp"
-                                           class="item-thumb">
-                                            <img width="60" height="60" class="rounded-2"
-                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big3.webp"/>
-                                        </a>
-                                        <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank"
-                                           data-type="image"
-                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big4.webp"
-                                           class="item-thumb">
-                                            <img width="60" height="60" class="rounded-2"
-                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big4.webp"/>
-                                        </a>
-                                        <a data-fslightbox="mygalley" class="border mx-1 rounded-2" target="_blank"
-                                           data-type="image"
-                                           href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp"
-                                           class="item-thumb">
-                                            <img width="60" height="60" class="rounded-2"
-                                                 src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp"/>
-                                        </a>
-                                    </div>
-                                    <!-- thumbs-wrap.// -->
-                                    <!-- gallery-wrap .end// -->
-                                </aside>
+                                <img src="../../uploads/<%= product.productPicName %>">
                                 <section class="col-lg-6">
                                     <div class="ps-lg-3">
                                         <div class="d-flex flex-row my-3">
@@ -229,22 +180,11 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <span class="h5">$75.00</span>
+                                            <span class="h5"><%= product.price %>€</span>
                                             <span class="text-muted">/per box</span>
                                         </div>
 
-                                        <p>
-                                            Modern look and quality demo item is a streetwear-inspired collection
-                                            that
-                                            continues
-                                            to
-                                            break away from the conventions of mainstream fashion. Made in Italy,
-                                            these
-                                            black
-                                            and brown
-                                            clothing low-top shirts for
-                                            men.
-                                        </p>
+                                        <p><%= product.description %></p>
 
                                         <div class="row">
                                             <dt class="col-3">Type:</dt>
@@ -320,13 +260,12 @@
                                     </div>
                                     <div class="col-lg-6 px-xl-10">
                                         <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                            <h3 class="h2 text-white mb-0"><%= product.fk_profileid %></h3>
+                                            <h3 class="h2 text-white mb-0"><%= product.name %></h3>
                                         </div>
                                         <ul class="list-unstyled mb-1-9">
                                             <li class="mb-2 mb-xl-3 display-28"><span
                                                         class="display-26 text-secondary me-2 font-weight-600">Email:</span>
-                                                ethanwalker@email.com'
-                                            </li>
+                                                <%= profile.email %>                                            </li>
                                             <li class="mb-2 mb-xl-3 display-28"><span
                                                         class="display-26 text-secondary me-2 font-weight-600">Tel:</span>
                                                 +1 (555) 123-4567

@@ -1,10 +1,11 @@
 const productModel = require("../models/productModel.js");
+const profileModel = require('../models/profileModel');
 
 //Gets the products from the database and renders the products (all products)
 function getProducts(req, res, next) {
     productModel.getProducts()
         .then((products) => {
-            res.render("products", { products });
+            res.render("products", {products});
         })
         .catch((err) => {
             res.status(404);
@@ -13,22 +14,31 @@ function getProducts(req, res, next) {
 }
 
 //Gets a product by id from the database and renders the product page (single product)
-function getProductById(req, res, next) {
-    productModel.getProductById(parseInt(req.params.id))
-        .then((product) => {
-            res.render("product", { product });
-        })
-        .catch((err) => {
-            res.status(404);
-            next(err)
-        });
+async function getProductById(req, res, next) {
+    try {
+        const productId = req.params.id;
+
+        // Fetch the product by ID from the database
+        const product = await productModel.getProductById(productId);
+
+        // Fetch the profile data (assuming you have a method like getProfileById in profileModel)
+        const profileId = req.cookies.profileid;
+        const profile = await profileModel.getProfileById(profileId);
+
+        // Render the product.ejs template and pass the product and profile data
+        res.render('product', {product: product, profile: profile});
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        res.status(500).send('Internal Server Error');
+    }
 }
+
 
 //Gets a product by id from the database and renders the editProduct page
 function editProduct(req, res, next) {
     productModel.getProductById(parseInt(req.params.id))
         .then((product) => {
-            res.render("editProduct", { product });
+            res.render("editProduct", {product});
         })
         .catch((err) => {
             res.status(404);
@@ -40,7 +50,7 @@ function editProduct(req, res, next) {
 function updateProduct(req, res, next) {
     productModel.updateProduct(req.body, req.params.id)
         .then((product) => {
-            res.render("product", { product });
+            res.render("product", {product, profile: req.profile});
         })
         .catch((err) => {
             res.status(404);
@@ -50,9 +60,11 @@ function updateProduct(req, res, next) {
 
 //Adds a product to the database and renders the product page (single product)
 function addProduct(req, res, next) {
+
     productModel.addProduct(req.body)
         .then((product) => {
-            res.render("product", { product });
+            console.log(product);
+            res.redirect("/products/" + product.insertId);
         })
         .catch((err) => {
             res.status(404);

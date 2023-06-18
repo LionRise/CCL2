@@ -6,6 +6,7 @@ const profileModel = require("../models/profileModel");
 const productController = require("../controllers/productController.js");
 const productModel = require("../models/productModel");
 const authenticationService = require("../services/authentication");
+const path = require("path");
 
 let storage = {};
 
@@ -25,17 +26,19 @@ router.get('/products', async (req, res, next) => {
         const products = await productModel.getProducts(); // Assuming getProducts() returns a promise
         const profiles = await profileModel.getProfiles(); // Assuming getProducts() returns a promise
 
-        console.log(products);
+        // Pass the profile variable to the template
+        const profile = req.profile;
+
+        console.log(products, profiles, profile);
 
         // Render the template and pass the products
-        res.render('products', {products: products, profiles: profiles});
+        res.render('products', {products: products, profiles: profiles, profile: req.profile});
     } catch (error) {
         // Handle the error appropriately
         console.error('Error fetching products:', error);
         res.status(500).send('Internal Server Error');
     }
 });
-
 
 
 router.route("/login")
@@ -68,11 +71,75 @@ router.get("/addProfile", (req, res) => {
     res.render("addProfile");
 });
 
+
+router.route("/addProduct")
+    .get((req, res) => {
+        let uID = req.params.id;
+        const filename = uID + ".jpg";
+        const options = {
+            root: path.join(__dirname, ".../public/uploads/")
+        };
+        res.sendFile(filename, options);
+        const profileid = req.cookies.profileid; // Retrieve the profile ID from the cookie
+        res.render("addProduct", {profileid});
+    });
+
+router.route("/products/added")
+    .post((req, res) => {
+        console.log(req.files)
+        try {
+            if (!req.files) {
+                res.send({
+                    status: false,
+                    message: "No file uploaded",
+                });
+            } else {
+                const picture = req.files.productPicName;
+                const uuidfilename = broofa() + ".jpg";
+                const filename = "./public/uploads/" + uuidfilename;
+                console.log("HENLO!!!", uuidfilename)
+
+                picture.mv(filename, function (err) {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send(err);
+                    } else {
+                        const productData = {...req.body, productPicName: uuidfilename};
+                        console.log("HENLOOOO2!!!", productData)
+                        productModel
+                            .addProduct(productData)
+                            .then((product) => {
+                                console.log(product);
+                                res.redirect("/products/" + product.insertId);
+                            })
+                            .catch((err) => {
+                                res.status(500).send(err.message);
+                            });
+                    }
+                });
+            }
+        } catch (err) {
+            console.log(err);
+            res.status(500).send(err);
+        }
+    });
+
+function broofa() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+}
+
 router.post("/", (req, res, next) => {
     storage = req.body;
     console.log(storage);
     res.send("Received your post request");
 });
+
+router.get("/chat", (req, res, next) => {
+    res.render("chat");
+})
 
 router.get("/example/b", (req, res, next) => {
     console.log("The response will be sent by the next function...");
@@ -80,10 +147,6 @@ router.get("/example/b", (req, res, next) => {
 }, (req, res) => {
     res.send("This is the response!");
 });
-
-router.get("/chat", (req, res, next) => {
-    res.render("chat");
-})
 
 
 const cbC1 = (req, res, next) => {

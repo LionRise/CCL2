@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
 const productController = require("../controllers/productController.js");
 
 router.get("/", productController.getProducts);
-router.post("/added", productController.addProduct);
 
 router.get("/:id", productController.getProductById);
 
@@ -21,7 +21,7 @@ router.route("/:id/picture")
         let uID = req.params.id;
         const filename = uID + ".jpg";
         const options = {
-            root: path.join(__dirname, "../uploads")
+            root: path.join(__dirname, "../public/uploads")
         };
         res.sendFile(filename, options);
     })
@@ -35,10 +35,10 @@ router.route("/:id/picture")
                 });
             } else {
                 // handle how to save the picture
-                let picture = req.files['undefined'];
+                let picture = req.files['productPicName'];
                 let uuidfilename = uuidv4() + ".jpg";
 
-                let filename = "./uploads/" + uuidfilename;
+                let filename = "./public/uploads/" + uuidfilename;
                 picture.mv(filename);
                 console.log("Picture saved to " + filename);
 
@@ -56,11 +56,5 @@ router.route("/:id/picture")
             res.status(500).send(err);
         }
     });
-
-function uuidv4() {
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-}
 
 module.exports = router;

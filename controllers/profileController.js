@@ -14,30 +14,20 @@ function getProfiles(req, res, next) {
 }
 
 //Gets a profile by id from the database and renders the profile page (single profile)
-/*function getProfileById(req, res, next) {
-    profileModel.getProfileById(parseInt(req.params.id))
-        .then((profile) => {
-            res.render("profile", { profile });
-        })
-        .catch((err) => {
-            res.status(404);
-            next(err)
-        });
-}*/
+//Also passes the products to the profile page
+async function getProfileById(req, res, next) {
+    try {
+        const [profile, products] = await Promise.all([
+            profileModel.getProfileById(parseInt(req.params.id)),
+            productModel.getProducts()
+        ]);
 
-function getProfileById(req, res, next) {
-    Promise.all([
-        profileModel.getProfileById(parseInt(req.params.id)),
-        productModel.getProducts()
-    ])
-        .then(([profile, products]) => {
-            profile.id = req.params.id;
-            res.render("profile", {profile, products});
-        })
-        .catch((err) => {
-            res.status(404);
-            next(err);
-        });
+        profile.id = req.params.id;
+        res.render("profile", { profile, products });
+    } catch (err) {
+        res.status(404);
+        next(err);
+    }
 }
 
 

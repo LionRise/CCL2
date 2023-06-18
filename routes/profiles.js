@@ -4,6 +4,7 @@ const router = express.Router();
 const profileController = require("../controllers/profileController.js");
 const productController = require("../controllers/productController.js");
 const authenticationService = require("../services/authentication");
+const path = require("path");
 
 // Check if the profile is logged in and if the token is valid
 // This function is executed before all following routes! => Important to be on top
