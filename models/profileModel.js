@@ -3,11 +3,10 @@ const bcrypt = require("bcrypt");
 
 // Handles the database calls for the profile routes
 let getProfiles = () => new Promise((resolve, reject) => {
-    db.query("SELECT * FROM profiles", function(err, profiles, fields) {
-        if(err) {
+    db.query("SELECT * FROM profiles", function (err, profiles, fields) {
+        if (err) {
             reject(err);
         } else {
-            console.log(db, "getProfiles");
             resolve(profiles);
         }
     });
@@ -16,13 +15,13 @@ let getProfiles = () => new Promise((resolve, reject) => {
 let getProfileById = (id) => new Promise((resolve, reject) => {
     db.query(`SELECT profiles.*, products.*
               FROM profiles
-              JOIN products ON profiles.id = products.fk_profileid
+              left JOIN products ON profiles.id = products.fk_profileid
               WHERE profiles.id = ${id};`,
-        function(err, products, fields) {
-            if(err) {
+        function (err, products, fields) {
+            if (err) {
                 reject(err);
             } else {
-                console.log(products[0], "products[0]");
+                console.log(products, "products");
                 resolve(products[0]);
             }
         });
@@ -30,7 +29,6 @@ let getProfileById = (id) => new Promise((resolve, reject) => {
 
 
 let updateProfile = (profileData, id) => new Promise(async (resolve, reject) => {
-    profileData.password = await bcrypt.hash(profileData.password, 10);
     let sql = "UPDATE profiles SET " +
         "name = " + db.escape(profileData.name) +
         ", email = " + db.escape(profileData.email) +
@@ -39,8 +37,8 @@ let updateProfile = (profileData, id) => new Promise(async (resolve, reject) => 
 
     console.log(sql);
 
-    db.query(sql, function(err, result, fields) {
-        if(err) {
+    db.query(sql, function (err, result, fields) {
+        if (err) {
             reject(err);
         }
         console.log(result.affectedRows + " rows have been affected!");
@@ -48,6 +46,7 @@ let updateProfile = (profileData, id) => new Promise(async (resolve, reject) => 
         resolve(profileData);
     });
 });
+
 
 let addProfile = (profileData) => new Promise(async (resolve, reject) => {
     profileData.password = await bcrypt.hash(profileData.password, 10);
@@ -59,8 +58,9 @@ let addProfile = (profileData) => new Promise(async (resolve, reject) => {
 
     console.log(sql);
 
-    db.query(sql, function(err, result, fields) {
-        if(err) {
+    db.query(sql, function (err, result, fields) {
+        if (err) {
+            console.log(err);
             reject(err);
         }
         profileData.id = result.insertId;
@@ -74,8 +74,8 @@ let deleteProfile = (id) => new Promise((resolve, reject) => {
 
     console.log(sql);
 
-    db.query(sql, function(err, result, fields) {
-        if(err) {
+    db.query(sql, function (err, result, fields) {
+        if (err) {
             reject(err);
         }
         console.log(result.affectedRows + " rows have been affected!");

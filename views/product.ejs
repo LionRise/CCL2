@@ -57,12 +57,26 @@
         }
 
         .font-weight-600 {
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .display-26 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
+
+        @media (max-width: 1199px) {
+            h3 {
+                font-size: 2rem;
+            }
+        }
+
+
+        @media (min-width: 1200px) {
+            h3 {
+                font-size: 1.5rem;
+            }
+        }
+
 
         @media screen and (min-width: 992px) {
             .p-lg-7 {
@@ -103,23 +117,23 @@
         }
 
         .px-1-9 {
-            padding-right: 1.9rem;
+            padding-right: 1rem;
         }
 
         .px-1-9 {
-            padding-left: 1.9rem;
+            padding-left: 1rem;
         }
 
         .py-1-9 {
-            padding-bottom: 1.9rem;
+            padding-bottom: 1rem;
         }
 
         .py-1-9 {
-            padding-top: 1.9rem;
+            padding-top: 1rem;
         }
 
         .mb-1-9 {
-            margin-bottom: 1.9rem;
+            margin-bottom: 1rem;
         }
 
         @media (min-width: 992px) {
@@ -151,209 +165,137 @@
 
     <div class="d-flex">
         <div class="row">
-            <div class="col-10">
+            <div class="col-10 px-0">
                 <div class="d-flex flex-row justify-content-evenly">
                     <!-- Product -->
-                    <section class="py-5 col-8 me-2">
-                        <div class="container">
+                    <section class="py-3">
+                        <div class="container hidden">
                             <div class="row gx-5">
-                                <h4 class="title text-dark">
-                                    <%= product.title %>
-                                </h4>
-                                <img src="../../uploads/<%= product.productPicName %>">
-                                <section class="col-lg-6">
+                                <div class="mb-3 d-flex flex-row justify-content-between">
+                                    <h4 class="title text-dark">
+                                        <%= product.title %>
+                                    </h4>
+                                    <span class="h5"><%= product.price %>€</span>
+                                </div>
+                                <main class="col-lg-8">
+                                    <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                                        <img style="max-width: 100%; max-height: 100vh; margin: auto;"
+                                             class="rounded-4 fit"
+                                             src="../../uploads/<%= product.productPicName %>"/>
+                                    </div>
                                     <div class="ps-lg-3">
+
                                         <div class="d-flex flex-row my-3">
                                             <div class="text-warning mb-1 me-2">
                                                 <i class="bi bi-star"></i>
                                                 <i class="bi bi-star"></i>
                                                 <i class="bi bi-star"></i>
                                                 <i class="bi bi-star"></i>
-                                                <i class="bi bi-star-half"></i>
+                                                <i class="bi bi-star-half-alt"></i>
                                                 <span class="ms-1">
                 4.5
               </span>
                                             </div>
-                                            <span class="text-muted"><i
-                                                        class="bi bi-shopping-basket fa-sm mx-1"></i>154 orders</span>
                                             <span class="text-success ms-2">In stock</span>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <span class="h5"><%= product.price %>€</span>
-                                            <span class="text-muted">/per box</span>
-                                        </div>
-
-                                        <p><%= product.description %></p>
-
-                                        <div class="row">
-                                            <dt class="col-3">Type:</dt>
-                                            <dd class="col-9">Regular</dd>
-
-                                            <dt class="col-3">Color</dt>
-                                            <dd class="col-9">Brown</dd>
-
-                                            <dt class="col-3">Material</dt>
-                                            <dd class="col-9">Cotton, Jeans</dd>
-
-                                            <dt class="col-3">Brand</dt>
-                                            <dd class="col-9">Reebook</dd>
                                         </div>
 
                                         <hr/>
 
-                                        <div class="row mb-0">
-                                            <div class="col-md-4 col-6">
-                                                <label class="mb-2">Size</label>
-                                                <select class="form-select border border-secondary"
-                                                        style="height: 35px;">
-                                                    <option>Small</option>
-                                                    <option>Medium</option>
-                                                    <option>Large</option>
-                                                </select>
-                                            </div>
-                                            <!-- col.// -->
-                                            <div class="col-md-4 col-6 mb-3">
+                                        <div class="row mb-4 justify-content-between">
+                                            <div class="col-lg-6 mb-3">
                                                 <label class="mb-2 d-block">Quantity</label>
                                                 <div class="input-group mb-3" style="width: 170px;">
                                                     <button class="btn btn-white border border-secondary px-3"
                                                             type="button"
                                                             id="button-addon1" data-mdb-ripple-color="dark">
-                                                        -
+                                                        <i class="bi bi-minus"></i>
                                                     </button>
                                                     <input type="text"
                                                            class="form-control text-center border border-secondary"
-                                                           placeholder="14"
-                                                           aria-label="Example text with button addon"
+                                                           placeholder="14" aria-label="Example text with button addon"
                                                            aria-describedby="button-addon1"/>
                                                     <button class="btn btn-white border border-secondary px-3"
                                                             type="button"
                                                             id="button-addon2" data-mdb-ripple-color="dark">
-                                                        +
+                                                        <i class="bi bi-plus"></i>
                                                     </button>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <a href="#" class="btn btn-primary shadow-0"> <i
-                                                        class="me-1 bi bi-cart"></i>
-                                                Add to cart </a>
-                                            <a href="#"
-                                               class="btn btn-light border border-secondary py-2 icon-hover px-3">
-                                                <i class="me-1 bi bi-heart fa-lg"></i> Save </a>
+                                            <div class="d.flex flex-row col-lg-6 mb-3 align-self-center justify-content-around" >
+                                                <a href="#" class="btn btn-warning shadow-0"> Buy now </a>
+                                                <a href="#" class="btn btn-primary shadow-0">Add to cart <i
+                                                            class="me-1 bi bi-cart"></i> </a>
+                                                <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3">
+                                                    <i
+                                                            class="me-1 bi bi-heart fa-lg"></i> Save </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </section>
-                            </div>
-                        </div>
-                    </section>
 
-                    <!-- Card -->
-                    <div class="py-5 col-4 ms-2">
-                        <!-- Card -->
-                        <div class="card card-style1 border-0">
-                            <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
-                                <div class="row align-items-center">
-                                    <div class="d-flex justify-content-center col-lg-6 mb-4 mb-lg-0">
-                                        <img class="responsive" src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                                             alt="...">
-                                    </div>
-                                    <div class="col-lg-6 px-xl-10">
-                                        <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                            <h3 class="h2 text-white mb-0"><%= product.name %></h3>
-                                        </div>
-                                        <ul class="list-unstyled mb-1-9">
-                                            <li class="mb-2 mb-xl-3 display-28"><span
-                                                        class="display-26 text-secondary me-2 font-weight-600">Email:</span>
-                                                <%= profile.email %>                                            </li>
-                                            <li class="mb-2 mb-xl-3 display-28"><span
-                                                        class="display-26 text-secondary me-2 font-weight-600">Tel:</span>
-                                                +1 (555) 123-4567
-                                            </li>
-                                            <li class="mb-2 mb-xl-3 display-28"><span
-                                                        class="display-26 text-secondary me-2 font-weight-600">Address:</span>
-                                                123 Main Street, Anytown, USA
-                                            </li>
-                                        </ul>
-                                        <ul style="font-size: 20px"
-                                            class="social-icon-style1 list-unstyled mb-0 ps-0 d-flex flex-row justify-content-around">
-                                            <li><a href="#!"><i class="bi-twitter"></i></a></li>
-                                            <li><a href="#!"><i class="bi-facebook"></i></a></li>
-                                            <li><a href="#!"><i class="bi-pinterest"></i></a></li>
-                                            <li><a href="#!"><i class="bi-instagram"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="d-flex flex-row justify-content-around flex-wrap">
-                                        <btn class="btn btn-primary mt-3">Message Seller</btn>
-                                        <btn class="btn btn-warning mt-3"><i class="bi bi-cash"></i> Instant buy</btn>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <section class="bg-light border-top py-4">
-                    <div class="container">
-                        <div class="row gx-4">
-                            <div>
-                                <div class="border rounded-2 px-3 py-2 bg-white">
-                                    <!-- Pills content -->
-                                    <div class="tab-content" id="ex1-content">
-                                        <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel"
-                                             aria-labelledby="ex1-tab-1">
-                                            <p>
-                                                With supporting text below as a natural lead-in to additional content.
-                                                Lorem ipsum
-                                                dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                                incididunt ut
-                                                labore et dolore magna aliqua. Ut
-                                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                aliquip ex
-                                                ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                voluptate velit esse
-                                                cillum dolore eu fugiat nulla
-                                                pariatur.
-                                            </p>
-                                            <div class="row mb-2">
-                                                <div class="col-12 col-md-6">
-                                                    <ul class="list-unstyled mb-0">
-                                                        <li><i class="bi bi-check text-success me-2"></i>Some great
-                                                            feature name
-                                                            here
+                                </main>
+
+                                <!-- Card -->
+                                <div class="col-lg-4">
+                                    <!-- Card -->
+                                    <div class="card card-style1 border-0">
+                                        <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                                            <div class="row align-items-center">
+                                                <div class="d-flex justify-content-center col-xl-6 mb-4 mb-lg-0">
+                                                    <img class="responsive"
+                                                         src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                                         alt="...">
+                                                </div>
+                                                <div class="col-xl-6 px-xl-8">
+                                                    <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 flex-wrap rounded">
+                                                        <h3 class="text-white mb-0"><%= product.name %> </h3>
+                                                    </div>
+                                                    <ul class="list-unstyled mb-1-9">
+                                                        <li class="mb-2 mb-xl-3"><span
+                                                                    class="display-26 text-secondary me-2 font-weight-600">Email:</span>
+                                                            <%= product.email %></li>
+                                                        <li class="mb-2 mb-xl-3"><span
+                                                                    class="display-26 text-secondary me-2 font-weight-600">Tel:</span>
+                                                            +1 (555) 123-4567
                                                         </li>
-                                                        <li><i class="bi bi-check text-success me-2"></i>Lorem ipsum
-                                                            dolor sit
-                                                            amet, consectetur
+                                                        <li class="mb-2 mb-xl-3"><span
+                                                                    class="display-26 text-secondary me-2 font-weight-600">Address:</span>
+                                                            123 Main Street, Anytown, USA
                                                         </li>
-                                                        <li><i class="bi bi-check text-success me-2"></i>Duis aute irure
-                                                            dolor in
-                                                            reprehenderit
-                                                        </li>
+                                                    </ul>
+                                                    <ul style="font-size: 20px"
+                                                        class="social-icon-style1 list-unstyled mb-0 ps-0 d-flex flex-row justify-content-around">
+                                                        <li><a href="#!"><i class="bi-twitter"></i></a></li>
+                                                        <li><a href="#!"><i class="bi-facebook"></i></a></li>
+                                                        <li><a href="#!"><i class="bi-pinterest"></i></a></li>
+                                                        <li><a href="#!"><i class="bi-instagram"></i></a></li>
                                                     </ul>
                                                 </div>
-                                                <div class="col-12 col-md-6 mb-0">
-                                                    <ul class="list-unstyled">
-                                                        <li><i class="bi bi-check text-success me-2"></i>Easy fast and
-                                                            ver good
-                                                        </li>
-                                                        <li><i class="bi bi-check text-success me-2"></i>Some great
-                                                            feature name
-                                                            here
-                                                        </li>
-                                                        <li><i class="bi bi-check text-success me-2"></i>Modern style
-                                                            and design
-                                                        </li>
-                                                    </ul>
+                                                <div class="d-flex flex-row justify-content-around flex-wrap">
+                                                    <btn class="btn btn-primary mt-3">Message Seller</btn>
+
+                                                    <a href="/profiles/<%= product.fk_profileid %>">
+                                                        <btn class="btn btn-light border border-secondary icon-hover mt-3">
+                                                            Go to profile
+                                                        </btn>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Pills content -->
+                                </div>
+
+                                <div class="tab-content" id="ex1-content">
+                                    <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel"
+                                         aria-labelledby="ex1-tab-1">
+                                        <p>
+                                            <%= product.description %>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
             </div>
 
 

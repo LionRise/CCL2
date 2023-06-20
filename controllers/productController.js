@@ -63,7 +63,6 @@ function addProduct(req, res, next) {
 
     productModel.addProduct(req.body)
         .then((product) => {
-            console.log(product);
             res.redirect("/products/" + product.insertId);
         })
         .catch((err) => {

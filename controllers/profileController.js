@@ -1,6 +1,7 @@
 const profileModel = require("../models/profileModel.js");
 const productModel = require("../models/productModel");
 
+
 //Gets the profiles from the database and renders the profiles (all profiles)
 function getProfiles(req, res, next) {
     profileModel.getProfiles()
@@ -18,12 +19,13 @@ function getProfiles(req, res, next) {
 async function getProfileById(req, res, next) {
     try {
         const [profile, products] = await Promise.all([
-            profileModel.getProfileById(parseInt(req.params.id)),
+            profileModel.getProfileById(+req.params.id),
             productModel.getProducts()
         ]);
 
         profile.id = req.params.id;
-        res.render("profile", { profile, products });
+
+        res.render("profile", {profile, products});
     } catch (err) {
         res.status(404);
         next(err);
@@ -59,7 +61,9 @@ function updateProfile(req, res, next) {
 function addProfile(req, res, next) {
     profileModel.addProfile(req.body)
         .then((profile) => {
-            res.render("profile", {profile});
+            console.log('redirecting: /profiles/' + profile.id);
+            //res.redirect("/profiles/" + profile.id);
+            res.redirect("/");
         })
         .catch((err) => {
             res.status(404);
@@ -70,14 +74,18 @@ function addProfile(req, res, next) {
 //Registers a new profile and adds it to the database and renders the welcome page
 function register(req, res, next) {
     profileModel.addProfile(req.body)
-        .then(() => {
-            res.render("index");
+        .then((profile) => {
+            console.log('redirecting: /profiles/' + profile.id);
+            //res.redirect("/profiles/" + profile.id);
+            res.redirect("/");
+
         })
         .catch((err) => {
             res.status(404);
             next(err)
         });
 }
+
 
 //Deletes a profile by id from the database and renders the deletedProfile page
 function deleteProfile(req, res, next) {

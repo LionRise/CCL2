@@ -132,10 +132,6 @@
             border-radius: 0.25rem !important;
         }
 
-        btn {
-            cursor: pointer;
-        }
-
     </style>
 </head>
 
@@ -155,7 +151,7 @@
                         </div>
                         <div class="d-flex col-sm flex-row justify-content-center action-btns align-items-center">
                             <a class="btn btn-primary" href="/profiles/<%= profile.id %>/edit"><i class="bi bi-pen"></i></a>
-                            <button class="btn btn-danger" onclick="onDelete('<%= profile.id %>')">Delete</button>
+                            <button class="btn btn-danger" onclick="onDeleteProfile('<%= profile.id %>')">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -219,48 +215,64 @@
                     <div class="accordion" id="accordionExample">
                         <% for(let i = 0; i < products.length; i++) { %>
                             <% if (products[i].fk_profileid == profile.id) { %>
-                                <div class="d-flex flex-column product-entry">
-                                    <div class="accordion-item">
+                                <div class="d-flex flex-row product-entry justify-content-between">
+                                    <div class="accordion-item col-10">
                                         <h2 class="accordion-header">
-                                            <button class="accordion-button collapsed" type="button"
+                                            <button class="accordion-button collapsed d-flex flex-row justify-content-between align-items-center"
+                                                    type="button"
                                                     data-bs-toggle="collapse"
-                                                    data-bs-target="#collapse1" aria-expanded="false"
-                                                    aria-controls="collapse1">
-                                                <p>
-                                                    <%= products[i].title %> <strong><%= products[i].price %>€</strong>
-                                                </p>
+                                                    data-bs-target="#collapse<%= products[i].id %>"
+                                                    aria-expanded="false"
+                                                    aria-controls="collapse<%= products[i].id %>">
+                                                    <p class="m-0">
+                                                        <%= products[i].title %>
+                                                    </p>
+                                                    <p class="m-0">
+                                                        <strong><%= products[i].price %>€</strong>
+                                                    </p>
+                                                    <a class="btn btn-primary" href="/products/<%= products[i].id %>/edit"><i class="bi bi-pen"></i></a>
                                             </button>
                                         </h2>
-                                        <div id="collapse1" class="accordion-collapse collapse"
+                                        <div id="collapse<%= products[i].id %>"
+                                             class="accordion-collapse collapse"
                                              data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
                                                 <%= products[i].description %>
                                             </div>
                                         </div>
                                     </div>
+                                    <a class="btn btn-danger col-2  align-self-center p-2 m-2" onclick="onDeleteProduct('<%= products[i].id %>')">Delete</a>
                                 </div>
                             <% } %>
                         <% } %>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
 </main>
 <script>
-    function onDelete(id) {
+    function onDeleteProfile(id) {
         let deleteProfile = confirm("Are you really sure you want to delete this profile?");
 
         if (deleteProfile) {
             setTimeout(() => {
                 window.location.href = "/profiles/" + id + "/delete";
             }, 5); // Add a small delay (5ms) before redirecting because of violation warning
-        } else {
+        }
+    }
+
+    function onDeleteProduct(id) {
+        let deleteProduct = confirm("Are you sure you want to delete this product?");
+
+        if (deleteProduct) {
             setTimeout(() => {
-                window.location.href = "/profiles/" + id;
+                window.location.href = "/products/" + id + "/delete";
             }, 5); // Add a small delay (5ms) before redirecting because of violation warning
         }
     }
+
 </script>
 </body>
 </html>

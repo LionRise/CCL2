@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const profileController = require("../controllers/profileController.js");
-const productController = require("../controllers/productController.js");
 const authenticationService = require("../services/authentication");
 const path = require("path");
 
@@ -19,7 +18,6 @@ router.get("/:id", profileController.getProfileById);
 // Actually "put" is for updating and "post" is for creating => just for semester project
 router.get("/:id/edit", profileController.editProfile);
 router.post("/:id", profileController.updateProfile);
-
 router.get("/:id/delete", profileController.deleteProfile);
 
 // request a profile picture as a post

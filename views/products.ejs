@@ -228,11 +228,11 @@
                                             <input class="form-check-input" type="checkbox" value=""
                                                    id="flexCheckDefault" checked/>
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                <i class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i>
-                                                <i class="fas fa-star text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i><i
+                                                        class="bi bi-star text-warning"></i><i
+                                                        class="bi bi-star text-warning"></i><i
+                                                        class="bi bi-star text-warning"></i>
+                                                <i class="bi bi-star text-warning"></i>
                                             </label>
                                         </div>
                                         <!-- Default checkbox -->
@@ -240,11 +240,11 @@
                                             <input class="form-check-input" type="checkbox" value=""
                                                    id="flexCheckDefault" checked/>
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                <i class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i>
-                                                <i class="fas fa-star text-secondary"></i>
+                                                <i class="bi bi-star text-warning"></i><i
+                                                        class="bi bi-star text-warning"></i><i
+                                                        class="bi bi-star text-warning"></i><i
+                                                        class="bi bi-star text-warning"></i>
+                                                <i class="bi bi-star text-secondary"></i>
                                             </label>
                                         </div>
                                         <!-- Default checkbox -->
@@ -252,11 +252,11 @@
                                             <input class="form-check-input" type="checkbox" value=""
                                                    id="flexCheckDefault" checked/>
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                <i class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-secondary"></i>
-                                                <i class="fas fa-star text-secondary"></i>
+                                                <i class="bi bi-star text-warning"></i><i
+                                                        class="bi bi-star text-warning"></i><i
+                                                        class="bi bi-star text-warning"></i><i
+                                                        class="bi bi-star text-secondary"></i>
+                                                <i class="bi bi-star text-secondary"></i>
                                             </label>
                                         </div>
                                         <!-- Default checkbox -->
@@ -264,11 +264,11 @@
                                             <input class="form-check-input" type="checkbox" value=""
                                                    id="flexCheckDefault" checked/>
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                <i class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-secondary"></i><i
-                                                        class="fas fa-star text-secondary"></i>
-                                                <i class="fas fa-star text-secondary"></i>
+                                                <i class="bi bi-star text-warning"></i><i
+                                                        class="bi bi-star text-warning"></i><i
+                                                        class="bi bi-star text-secondary"></i><i
+                                                        class="bi bi-star text-secondary"></i>
+                                                <i class="bi bi-star text-secondary"></i>
                                             </label>
                                         </div>
                                     </div>
@@ -283,7 +283,7 @@
                 <div class="col-lg-9">
                     <!-- mini header -->
                     <section class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-                        <strong class="d-block py-2">32 Items found </strong>
+                        <strong class="d-block py-2"><%= products.length %> </strong>
                         <div class="ms-auto">
                             <select class="form-select d-inline-block w-auto border pt-1">
                                 <option value="0">Best match</option>
@@ -292,11 +292,11 @@
                                 <option value="3">Randomly</option>
                             </select>
                             <div class="btn-group shadow-0 border">
-                                <a href="#" class="btn btn-light" title="List view">
-                                    <i class="fa fa-bars fa-lg"></i>
+                                <a href="#" class="btn btn-light active" title="List view">
+                                    <i class="bi bi-card-list bi-lg"></i>
                                 </a>
-                                <a href="#" class="btn btn-light active" title="Grid view">
-                                    <i class="fa fa-th fa-lg"></i>
+                                <a href="#" class="btn btn-light" title="Grid view">
+                                    <i class="bi bi-grid-3x3"></i>
                                 </a>
                             </div>
                         </div>
@@ -305,7 +305,6 @@
 
                     <!-- List view -->
                     <% for(let i = 0; i < products.length; i++) { %>
-                        <%= products[i].title %>
                         <div class="row justify-content-center mb-3">
                             <div class="col-md-12">
                                 <div class="card shadow-0 border rounded-3">
@@ -313,7 +312,7 @@
                                         <div class="row g-0">
                                             <div class="col-xl-3 col-md-4 d-flex justify-content-center">
                                                 <div class="bg-image hover-zoom ripple rounded ripple-surface me-md-3 mb-3 mb-md-0">
-                                                    <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/8.webp"
+                                                    <img src="../../uploads/<%= products[i].productPicName %>"
                                                          class="w-100"/>
                                                     <a href="#!">
                                                         <div class="hover-overlay">
@@ -327,11 +326,11 @@
                                                 <h5><%= products[i].title %></h5>
                                                 <div class="d-flex flex-row">
                                                     <div class="text-warning mb-1 me-2">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
+                                                        <i class="bi bi-star"></i>
+                                                        <i class="bi bi-star"></i>
+                                                        <i class="bi bi-star"></i>
+                                                        <i class="bi bi-star"></i>
+                                                        <i class="bi bi-star-half-alt"></i>
                                                         <span class="ms-1">
                           4.5
                         </span>
@@ -346,13 +345,14 @@
                                             <div class="col-xl-3 col-md-3 col-sm-5">
                                                 <div class="d-flex flex-row align-items-center mb-1">
                                                     <h4 class="mb-1 me-1"><%= products[i].price %>€</h4>
-                                                    <span class="text-danger"><s>$49.99</s></span>
+                                                    <span class="text-danger"><s><%= products[i].price * 0.9 %>€</s></span>
                                                 </div>
                                                 <h6 class="text-success">Free shipping</h6>
                                                 <div class="mt-4">
-                                                    <button class="btn btn-primary shadow-0" type="button">Buy this</button>
+                                                    <button class="btn btn-primary shadow-0" type="button">Buy this <i
+                                                                class="me-1 bi bi-cart"></i></button>
                                                     <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i
-                                                                class="fas fa-heart fa-lg px-1"></i></a>
+                                                                class="bi bi-heart fa-lg px-1"></i>Save</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -366,7 +366,7 @@
                     <!-- List view -->
 
                     <!-- Grid view -->
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
                             <div class="card w-100 my-2 shadow-2-strong">
                                 <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/10.webp"
@@ -380,7 +380,7 @@
                                     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
                                         <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
                                         <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i
-                                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                                                    class="bi bi-heart fa-lg text-secondary px-1"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -390,12 +390,12 @@
                                 <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/11.webp"
                                      class="card-img-top"/>
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">$120.00</h5>
+                                    <h5 class="card-title"><%= products.price %>></h5>
                                     <p class="card-text">Winter Jacket for Men and Women, All sizes</p>
                                     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
                                         <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
                                         <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i
-                                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                                                    class="bi bi-heart fa-lg text-secondary px-1"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -410,7 +410,7 @@
                                     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
                                         <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
                                         <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i
-                                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                                                    class="bi bi-heart fa-lg text-secondary px-1"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -425,7 +425,7 @@
                                     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
                                         <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
                                         <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i
-                                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                                                    class="bi bi-heart fa-lg text-secondary px-1"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -440,7 +440,7 @@
                                     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
                                         <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
                                         <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i
-                                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                                                    class="bi bi-heart fa-lg text-secondary px-1"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -455,7 +455,7 @@
                                     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
                                         <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
                                         <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i
-                                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                                                    class="bi bi-heart fa-lg text-secondary px-1"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -470,7 +470,7 @@
                                     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
                                         <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
                                         <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i
-                                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                                                    class="bi bi-heart fa-lg text-secondary px-1"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -485,7 +485,7 @@
                                     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
                                         <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
                                         <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i
-                                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                                                    class="bi bi-heart fa-lg text-secondary px-1"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -500,13 +500,13 @@
                                     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
                                         <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
                                         <a href="#!" class="btn btn-light border icon-hover px-2 pt-2"><i
-                                                    class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                                                    class="bi bi-heart fa-lg text-secondary px-1"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr/>
+                    <hr/>-->
                     <!-- Grid view -->
 
 
