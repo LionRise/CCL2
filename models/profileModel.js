@@ -3,7 +3,8 @@ const bcrypt = require("bcrypt");
 
 // Handles the database calls for the profile routes
 let getProfiles = () => new Promise((resolve, reject) => {
-    db.query("SELECT * FROM profiles", function (err, profiles, fields) {
+    const query = "SELECT * FROM profiles";
+    db.query(query, function (err, profiles, fields) {
         if (err) {
             reject(err);
         } else {
@@ -13,73 +14,64 @@ let getProfiles = () => new Promise((resolve, reject) => {
 });
 
 let getProfileById = (id) => new Promise((resolve, reject) => {
-    db.query(`SELECT profiles.*, products.*
-              FROM profiles
-              left JOIN products ON profiles.id = products.fk_profileid
-              WHERE profiles.id = ${id};`,
-        function (err, products, fields) {
-            if (err) {
-                reject(err);
-            } else {
-                console.log(products, "products");
-                resolve(products[0]);
-            }
-        });
+    const query = `SELECT profiles.*, products.*
+                   FROM profiles
+                   LEFT JOIN products ON profiles.id = products.fk_profileid
+                   WHERE profiles.id = ?`;
+    db.query(query, [id], function (err, products, fields) {
+        if (err) {
+            reject(err);
+        } else {
+            console.log(products, "products");
+            resolve(products[0]);
+        }
+    });
 });
 
 
-let updateProfile = (profileData, id) => new Promise(async (resolve, reject) => {
-    let sql = "UPDATE profiles SET " +
-        "name = " + db.escape(profileData.name) +
-        ", email = " + db.escape(profileData.email) +
-        ", info = " + db.escape(profileData.info) +
-        " WHERE id = " + parseInt(id);
-
-    console.log(sql);
-
-    db.query(sql, function (err, result, fields) {
+let updateProfile = (profileData, id) => new Promise((resolve, reject) => {
+    const query = "UPDATE profiles SET name = ?, email = ?, info = ? WHERE id = ?";
+    const values = [profileData.name, profileData.email, profileData.info, id];
+    db.query(query, values, function (err, result, fields) {
         if (err) {
             reject(err);
+        } else {
+            console.log(result.affectedRows + " rows have been affected!");
+            profileData.id = id;
+            resolve(profileData);
         }
-        console.log(result.affectedRows + " rows have been affected!");
-        profileData.id = id;
-        resolve(profileData);
     });
 });
 
 
 let addProfile = (profileData) => new Promise(async (resolve, reject) => {
-    profileData.password = await bcrypt.hash(profileData.password, 10);
-    let sql = "INSERT INTO profiles (name, email, info, password) VALUES (" +
-        db.escape(profileData.name) +
-        ", " + db.escape(profileData.email) +
-        ", " + db.escape(profileData.info) +
-        ", " + db.escape(profileData.password) + ")";
-
-    console.log(sql);
-
-    db.query(sql, function (err, result, fields) {
-        if (err) {
-            console.log(err);
-            reject(err);
-        }
-        profileData.id = result.insertId;
-        resolve(profileData);
-    });
+    try {
+        const hashedPassword = await bcrypt.hash(profileData.password, 10);
+        const query = "INSERT INTO profiles (name, email, info, password) VALUES (?, ?, ?, ?)";
+        const values = [profileData.name, profileData.email, profileData.info, hashedPassword];
+        db.query(query, values, function (err, result, fields) {
+            if (err) {
+                reject(err);
+            } else {
+                profileData.id = result.insertId;
+                resolve(profileData);
+            }
+        });
+    } catch (err) {
+        reject(err);
+    }
 });
 
 
 let deleteProfile = (id) => new Promise((resolve, reject) => {
-    let sql = `DELETE FROM profiles WHERE id = ${id}`;
-
-    console.log(sql);
-
-    db.query(sql, function (err, result, fields) {
+    const query = "DELETE FROM profiles WHERE id = ?";
+    db.query(query, [id], function (err, result, fields) {
         if (err) {
             reject(err);
+        } else {
+            console.log(result.affectedRows + " rows have been affected!");
+            resolve();
         }
-        console.log(result.affectedRows + " rows have been affected!");
-        resolve();
     });
 });
 
@@ -89,4 +81,4 @@ module.exports = {
     updateProfile,
     addProfile,
     deleteProfile,
-}
+};

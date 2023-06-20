@@ -1,6 +1,6 @@
 const profileModel = require("../models/profileModel.js");
 const productModel = require("../models/productModel");
-
+const authenticationService = require("../services/authentication");
 
 //Gets the profiles from the database and renders the profiles (all profiles)
 function getProfiles(req, res, next) {
@@ -61,6 +61,7 @@ function updateProfile(req, res, next) {
 function addProfile(req, res, next) {
     profileModel.addProfile(req.body)
         .then((profile) => {
+            authenticationService.loggedin = true;
             console.log('redirecting: /profiles/' + profile.id);
             //res.redirect("/profiles/" + profile.id);
             res.redirect("/");
