@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require("path");
 
 const productController = require("../controllers/productController.js");
+const productModel = require("../models/productModel");
 
 router.get("/", productController.getProducts);
 
@@ -10,8 +11,8 @@ router.get("/:id", productController.getProductById);
 
 // For editing the product
 // Actually "put" is for updating and "post" is for creating => just for semester project
-router.get("/:id/edit", productController.editProduct);
-router.post("/:id", productController.updateProduct);
+router.get("/:id/edit", productController.editProduct)
+router.post("/:id", productController.updateProduct)
 
 router.get("/:id/delete", productController.deleteProduct);
 

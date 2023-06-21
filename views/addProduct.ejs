@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/stylePlugin'); %>
+    <title>Add Profile</title>
+</head>
+<body>
+<header style="z-index: 3"><%- include('./partials/navBar'); %></header>
+<main style="z-index: 0; width: 98%; margin-top: 70px;">
+    <div class="d-flex justify-content-center">
+        <form role="form" action="/addProduct" method="post" id="add-profile-form" class="shadow-lg p-3 mb-5 bg-white rounded" enctype="multipart/form-data">
+        <h3 class="mb-3">Add Profile</h3>
+            <div class="form-group">
+                <label for="inputTitle" class="form-label">Title:</label>
+                <input type="text" name="title" id="inputTitle" class="form-control" placeholder="Title of your product" required>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="inputPrice" class="form-label">Price:</label>
+                        <input type="number" name="price" id="inputPrice" class="form-control" placeholder="Price" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="inputState" class="form-label">Condition:</label>
+                        <input type="text" name="state" id="inputState" class="form-control" placeholder="In what condition is your product?" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDescription" class="form-label">Description:</label>
+                <textarea name="description" id="inputDescription" class="form-control" rows="4" placeholder="Describe your product..." required></textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label for="productPicName" class="form-label">Product Image:</label>
+                <input type="file" name="productPicName" id="productPicName" accept="image/jpeg, image/png, image/jpg" class="form-control" required>
+            </div>
+            <input type="hidden" name="fk_profileid" value="<%= profileid %>">
+            <input type="hidden" name="isActive" value="1">
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-dark btn-lg btn-block mb-4" style="width: 100%" id="productAdd">Submit</button>
+    </form>
+    </div>
+</main>
+</body>
+</html>

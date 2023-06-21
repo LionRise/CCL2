@@ -9,38 +9,40 @@
 </head>
 <body>
 <header style="z-index: 3"><%- include('./partials/navBar'); %></header>
-<main class="d-flex justify-content-center">
-    <form action="/profiles/added" method="post" id="add-profile-form" class="shadow-lg p-3 mb-5 bg-white rounded">
-        <h3 class="mb-5">Add Profile</h3>
-        <!-- Email input -->
-        <div class="form-floating mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Email Address"/>
-            <label class="form-label" for="inputEmail">Email address</label>
-        </div>
-        <div class="row mb-3">
-            <!-- Name input -->
-            <div class="col form-floating">
-                <input type="text" name="name" class="form-control" placeholder="Name"/>
-                <label class="form-label" for="inputName" style="margin-left: 0.75rem">Name</label>
+<main style="z-index: 0; width: 98%; margin-top: 70px;">
+    <div class="d-flex justify-content-center">
+        <form role="form" action="/profiles/added" method="post" id="add-profile-form"
+              class="m-0 shadow-lg p-5 bg-white rounded" enctype="multipart/form-data">
+            <h3 class="mb-3">Add Profile</h3>
+            <!-- Email input -->
+            <div class="form-group">
+                <label for="inputEmail" class="form-label">Email:</label>
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Your email address"
+                       required="">
             </div>
-        </div>
-        <!-- Info input -->
-        <div class="form-floating mb-3">
-            <input type="text" name="info" class="form-control" placeholder="Your Info"/>
-            <label class="form-label" for="inputInfo">Info</label>
-        </div>
+            <!-- Name input -->
+            <div class="form-group">
+                <label for="inputTitle" class="form-label">Name:</label>
+                <input type="text" name="name" id="inputName" class="form-control" placeholder="Your displayed name"
+                       required="">
+            </div>
+            <!-- Info input -->
+            <div class="form-group">
+                <label for="inputInfo" class="form-label">Info:</label>
+                <textarea name="info" id="inputInfo" class="form-control" rows="4"
+                          placeholder="Some information about you..." required="" style="height: 135px;"></textarea>
+            </div>
+            <!-- Password input -->
+            <div class="form-group">
+                <label class="form-label" for="inputPassword">Password</label>
+                <input type="password" name="password" id="inputName" class="form-control" placeholder="Password"/>
+            </div>
 
-        <!-- Password input -->
-        <div class="form-floating mb-5">
-            <input type="password" name="password" class="form-control" placeholder="Password"/>
-            <label class="form-label" for="inputInfo">Password</label>
-        </div>
-
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-dark btn-lg btn-block mb-4" style="width: 100%"
-                id="addProduct">Submit
-        </button>
-    </form>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-dark btn-lg btn-block mb-4" style="width: 100%"
+                    id="addProduct">Submit
+            </button>
+        </form>
 </main>
 </body>
 </html>

@@ -29,7 +29,7 @@
             height: 100%;
         }
 
-        a{
+        a {
             text-decoration: none;
             color: inherit;
         }
@@ -38,7 +38,23 @@
 
 <body style="width: 100%">
 <header style="z-index: 3"><%- include('./partials/navBar'); %></header>
-<main style="z-index: 0; width: 98%; margin-top: 70px;">
+<div style="width: 100%" class="bg-primary text-white pt-5">
+    <div class="container py-5">
+        <h1>
+            Welcome to MarketHub
+        </h1>
+        <p>
+            Buy and sell to your heart's content
+        </p>
+        <button type="button" class="btn btn-outline-light">
+            <a href="<%= getProfileUrl()%>">Login</a>
+        </button>
+        <button type="button" class="btn btn-light shadow-0 text-primary pt-2 border border-white">
+            <a href="/products" class="pt-1">Find Products</a>
+        </button>
+    </div>
+</div>
+<main style="z-index: 0; width: 98%; margin-top: 10px;">
     <div class="d-flex justify-content evenly">
         <h2 class="col-8 text-center">
             Our favourite items

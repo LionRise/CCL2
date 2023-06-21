@@ -13,26 +13,28 @@ let getProducts = () => new Promise((resolve, reject) => {
 });
 
 let getProductById = (id) => new Promise((resolve, reject) => {
-    const query = "SELECT products.*, profiles.* FROM products JOIN profiles ON products.fk_profileid = profiles.id WHERE products.id = ?";
+    const query = "SELECT prod.id AS product_id, prof.id AS profile_id, prof.*, prod.* FROM products prod JOIN profiles prof ON prod.fk_profileid = prof.id WHERE prod.id = ?";
     db.query(query, [id], function (err, product, fields) {
         if (err) {
             reject(err);
         } else {
+            console.log(product[0], "Looooooooooog");
             resolve(product[0]);
         }
     });
 });
 
 let updateProduct = (productData, id) => new Promise((resolve, reject) => {
-    const query = "UPDATE products SET title = ?, price = ?, state = ?, description = ? WHERE id = ?";
-    const values = [productData.title, productData.price, productData.state, productData.description, id];
+    const query = "UPDATE products SET title = ?, price = ?, state = ?, description = ?, productPicName = ? WHERE id = ?";
+    const values = [productData.title, productData.price, productData.state, productData.description, productData.productPicName, id];
+    console.log(values, "values")
     db.query(query, values, function (err, result, fields) {
         if (err) {
             reject(err);
         } else {
-            console.log(result.affectedRows + " rows have been affected!");
-            productData.id = id;
-            resolve(productData);
+            getProductById(id).then((product) => {
+                resolve(product);
+            });
         }
     });
 });

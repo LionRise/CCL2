@@ -38,7 +38,10 @@ async function getProductById(req, res, next) {
 function editProduct(req, res, next) {
     productModel.getProductById(parseInt(req.params.id))
         .then((product) => {
-            res.render("editProduct", {product});
+            let profileId = req.params.id;
+            console.log(req.params.id, "req.params.id")
+            console.log(product, "I am the product")
+            res.render("editProduct", {product, profileId});
         })
         .catch((err) => {
             res.status(404);
@@ -50,6 +53,9 @@ function editProduct(req, res, next) {
 function updateProduct(req, res, next) {
     productModel.updateProduct(req.body, req.params.id)
         .then((product) => {
+            console.log(req.body, "req.body")
+            console.log(req.params.id, "req.params.id2")
+
             res.render("product", {product, profile: req.profile});
         })
         .catch((err) => {
