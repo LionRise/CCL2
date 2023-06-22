@@ -24,11 +24,24 @@ async function getProfileById(req, res, next) {
         ]);
 
         profile.id = req.params.id;
-
         res.render("profile", {profile, products});
     } catch (err) {
         res.status(404);
         next(err);
+    }
+}
+
+async function getProfileByCookieId(req, res) {
+    try {
+        const [profile, products] = await Promise.all([
+            profileModel.getProfileById(+req.cookies.profileid),
+            productModel.getProducts()
+        ]);
+
+        profile.id = req.cookies.profileid;
+        return profile;
+    } catch (err) {
+        return null;
     }
 }
 
@@ -57,14 +70,17 @@ function updateProfile(req, res, next) {
         });
 }
 
+//needed
 //Adds a profile to the database and renders the profile page (single profile)
 function addProfile(req, res, next) {
     profileModel.addProfile(req.body)
         .then((profile) => {
+            console.log("profileController addProfile. I've been called!")
             authenticationService.loggedin = true;
-            console.log('redirecting: /profiles/' + profile.id);
-            //res.redirect("/profiles/" + profile.id);
-            res.redirect("/");
+            res.cookie("profileid", profile.id);
+            res.cookie("loggedin", authenticationService.loggedin);
+            res.redirect("/profiles/" + profile.id);
+            //res.redirect("/");
         })
         .catch((err) => {
             res.status(404);
@@ -72,21 +88,55 @@ function addProfile(req, res, next) {
         });
 }
 
-//Registers a new profile and adds it to the database and renders the welcome page
-function register(req, res, next) {
-    profileModel.addProfile(req.body)
-        .then((profile) => {
-            console.log('redirecting: /profiles/' + profile.id);
-            //res.redirect("/profiles/" + profile.id);
-            res.redirect("/");
+async function register(req, res, next) {
+    try {
+        if (!req.files || !req.files.profilePicName) {
+            res.status(400).send({
+                status: false,
+                message: "No profile picture uploaded",
+            });
+            return;
+        }
 
-        })
-        .catch((err) => {
-            res.status(404);
-            next(err)
+        const picture = req.files.profilePicName;
+        const uuidfilename = broofa() + ".jpg";
+        const filename = "./public/uploads/" + uuidfilename;
+
+        picture.mv(filename, async function (err) {
+            if (err) {
+                console.log(err);
+                res.status(500).send(err);
+                return;
+            }
+
+            const profileData = {
+                ...req.body,
+                profilePicName: uuidfilename
+            };
+
+            try {
+                const profile = await profileModel.addProfile(profileData);
+                res.cookie("profileid", profile.id);
+                res.cookie("loggedin", true);
+                console.log('redirecting: /profiles/' + profile.id);
+                authenticationService.loggedin = true;
+                res.redirect("/profiles/" + profile.id);
+            } catch (err) {
+                res.status(500).send(err.message);
+            }
         });
+    } catch (err) {
+        res.status(500).send(err);
+    }
 }
 
+
+function broofa() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
 
 //Deletes a profile by id from the database and renders the deletedProfile page
 function deleteProfile(req, res, next) {
@@ -110,4 +160,5 @@ module.exports = {
     updateProfile,
     deleteProfile,
     register,
+    getProfileByCookieId
 }

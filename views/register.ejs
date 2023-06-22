@@ -6,13 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('./partials/stylePlugin'); %>
-    <title>Login</title>
+    <title>Register</title>
 </head>
 
 <body class="d-flex justify-content-center align-items-center" style="height: 100vh">
-<form action="/" method="post" class="login-register-form shadow-lg p-3 mb-5 bg-white rounded">
+<form action="/" method="post" class="login-register-form shadow-lg p-3 mb-5 bg-white rounded" enctype="multipart/form-data">
     <h3 class="mb-5">Register</h3>
-
 
     <!-- Email input -->
     <div class="form-floating mb-3">
@@ -36,6 +35,14 @@
     <div class="form-floating mb-5">
         <input type="password" name="password" class="form-control" placeholder="Password"/>
         <label class="form-label" for="inputPassword">Password</label>
+    </div>
+
+
+    <!-- Image -->
+    <div class="form-group mb-3">
+        <label for="productPicName" class="form-label">Product Image (jpg):</label>
+        <input type="file" name="profilePicName" id="profilePicName" accept="image/jpeg, image/png, image/jpg"
+               class="form-control" required>
     </div>
 
     <!-- Submit button -->

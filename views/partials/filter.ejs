@@ -1,0 +1,241 @@
+<!-- Toggle button -->
+<button
+        class="btn btn-outline-secondary mb-3 w-100 d-lg-none"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#filterSupportedContent"
+        aria-controls="filterSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle filter"
+>
+    <span>Show filter</span>
+</button>
+<!-- Collapsible wrapper -->
+<div class="collapse card d-lg-block mb-5" id="filterSupportedContent">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button
+                        class="accordion-button text-dark bg-light"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#panelsStayOpen-collapseOne"
+                        aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne"
+                >
+                    Related items
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                 aria-labelledby="headingOne">
+                <div class="accordion-body">
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Electronics </a></li>
+                        <li><a href="#" class="text-dark">Home items </a></li>
+                        <li><a href="#" class="text-dark">Books, Magazines </a></li>
+                        <li><a href="#" class="text-dark">Men's clothing </a></li>
+                        <li><a href="#" class="text-dark">Interiors items </a></li>
+                        <li><a href="#" class="text-dark">Underwears </a></li>
+                        <li><a href="#" class="text-dark">Shoes for men </a></li>
+                        <li><a href="#" class="text-dark">Accessories </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button
+                        class="accordion-button text-dark bg-light"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#panelsStayOpen-collapseTwo"
+                        aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseTwo"
+                >
+                    Brands
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
+                 aria-labelledby="headingTwo">
+                <div class="accordion-body">
+                    <div>
+                        <!-- Checked checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                   id="mercedes" checked/>
+                            <label class="form-check-label" for="mercedes">Mercedes</label>
+
+                        </div>
+                        <!-- Checked checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                   id="toyota" checked/>
+                            <label class="form-check-label" for="toyota">Toyota</label>
+                        </div>
+                        <!-- Checked checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                   id="mitsubishi" checked/>
+                            <label class="form-check-label"
+                                   for="mitsubishi">Mitsubishi</label>
+                        </div>
+                        <!-- Checked checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                   id="nissan" checked/>
+                            <label class="form-check-label" for="nissan">Nissan</label>
+                        </div>
+                        <!-- Default checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                   id="honda"/>
+                            <label class="form-check-label" for="honda">Honda</label>
+                        </div>
+                        <!-- Default checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                   id="suzuki"/>
+                            <label class="form-check-label" for="suzuki">Suzuki</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button
+                        class="accordion-button text-dark bg-light"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#panelsStayOpen-collapseThree"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseThree"
+                >
+                    Price
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show"
+                 aria-labelledby="headingThree">
+                <div class="accordion-body">
+                    <div class="range">
+                        <label for="rangeInput">Price range:</label>
+                        <input type="range" class="form-range" id="rangeInput"/>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <p class="mb-0">
+                                Min
+                            </p>
+                            <div class="form-outline">
+                                <input type="number" id="typeNumber1" class="form-control"/>
+                                <label class="form-label" for="typeNumber1">$0</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <p class="mb-0">
+                                Max
+                            </p>
+                            <div class="form-outline">
+                                <input type="number" id="typeNumber2" class="form-control"/>
+                                <label class="form-label" for="typeNumber2">$1,0000</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-white w-100 border border-secondary">
+                        apply
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button
+                        class="accordion-button text-dark bg-light"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#panelsStayOpen-collapseFour"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseFour"
+                >
+                    Size
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show"
+                 aria-labelledby="headingThree">
+                <div class="accordion-body">
+                    <input type="checkbox" class="btn-check border justify-content-center"
+                           id="btn-check1" checked autocomplete="off"/>
+                    <label class="btn btn-white mb-1 px-1" style="width: 60px;"
+                           for="btn-check1">XS</label>
+                    <input type="checkbox" class="btn-check border justify-content-center"
+                           id="btn-check2" checked autocomplete="off"/>
+                    <label class="btn btn-white mb-1 px-1" style="width: 60px;"
+                           for="btn-check2">SM</label>
+                    <input type="checkbox" class="btn-check border justify-content-center"
+                           id="btn-check3" checked autocomplete="off"/>
+                    <label class="btn btn-white mb-1 px-1" style="width: 60px;"
+                           for="btn-check3">LG</label>
+                    <input type="checkbox" class="btn-check border justify-content-center"
+                           id="btn-check4" checked autocomplete="off"/>
+                    <label class="btn btn-white mb-1 px-1" style="width: 60px;"
+                           for="btn-check4">XXL</label>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button
+                        class="accordion-button text-dark bg-light"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#panelsStayOpen-collapseFive"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseFive"
+                >
+                    Ratings
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show"
+                 aria-labelledby="headingThree">
+                <div class="accordion-body">
+                    <!-- Default checkbox -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value=""
+                               id="5stars" checked/>
+                        <label hidden="hidden" class="form-check-label" for="5stars">5 stars</label>
+                        <div id="5stars">
+                            <i class="bi bi-star text-warning"></i><i class="bi bi-star text-warning"></i><i class="bi bi-star text-warning"></i><i class="bi bi-star text-warning"></i><i class="bi bi-star text-warning"></i>
+                        </div>
+                    </div>
+                    <!-- Default checkbox -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="4stars" checked/>
+                        <label hidden="hidden" class="form-check-label" for="4stars">4 stars</label>
+                        <div id="4stars">
+                            <i class="bi bi-star text-warning"></i><i class="bi bi-star text-warning"></i><i class="bi bi-star text-warning"></i><i class="bi bi-star text-warning"></i><i class="bi bi-star text-secondary"></i>
+                        </div>
+
+                    </div>
+                    <!-- Default checkbox -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value=""
+                               id="3stars" checked/>
+                        <label hidden="hidden" class="form-check-label" for="3stars">3 stars</label>
+                        <div id="3stars">
+                            <i class="bi bi-star text-warning"></i><i class="bi bi-star text-warning"></i><i class="bi bi-star text-warning"></i><i class="bi bi-star text-secondary"></i><i class="bi bi-star text-secondary"></i>
+                        </div>
+                    </div>
+                    <!-- Default checkbox -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value=""
+                               id="2stars" checked/>
+                        <label hidden="hidden" class="form-check-label" for="2stars">2 stars</label>
+                        <div id="2stars">
+                            <i class="bi bi-star text-warning"></i><i class="bi bi-star text-warning"></i><i class="bi bi-star text-secondary"></i><i class="bi bi-star text-secondary"></i><i class="bi bi-star text-secondary"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

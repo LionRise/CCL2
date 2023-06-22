@@ -18,7 +18,6 @@ let getProductById = (id) => new Promise((resolve, reject) => {
         if (err) {
             reject(err);
         } else {
-            console.log(product[0], "Looooooooooog");
             resolve(product[0]);
         }
     });
@@ -27,7 +26,6 @@ let getProductById = (id) => new Promise((resolve, reject) => {
 let updateProduct = (productData, id) => new Promise((resolve, reject) => {
     const query = "UPDATE products SET title = ?, price = ?, state = ?, description = ?, productPicName = ? WHERE id = ?";
     const values = [productData.title, productData.price, productData.state, productData.description, productData.productPicName, id];
-    console.log(values, "values")
     db.query(query, values, function (err, result, fields) {
         if (err) {
             reject(err);
@@ -62,7 +60,6 @@ let deleteProduct = (id) => new Promise((resolve, reject) => {
         if (err) {
             reject(err);
         } else {
-            console.log(result.affectedRows + " rows have been affected!");
             resolve();
         }
     });

@@ -90,7 +90,17 @@
         <div class="row chat-screen">
             <div class="col d-flex flex-column justify-content-end">
                 <div class="input-group mb-1">
-                    <input id="room" type="text" class="form-control" placeholder="Room number">
+                    <select name="roomSelect" id="room">
+                        <option value="general">General</option>
+                        <option value="sell">I want to sell</option>
+                        <option value="buy">I want to buy</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <!--<input id="room" type="text" class="form-control" placeholder="Room number"> -->
                     <div class="input-group-append">
                         <button id="join-btn" class="btn btn-primary" onclick="join()">Join</button>
                     </div>

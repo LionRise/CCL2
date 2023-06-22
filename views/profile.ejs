@@ -48,10 +48,6 @@
             display: inline-block;
         }
 
-        .text-primary {
-            color: #ceaa4d !important;
-        }
-
         .text-secondary {
             color: #15395A !important;
         }
@@ -88,6 +84,11 @@
 
         .bg-secondary {
             background: #15395A !important;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
         @media screen and (min-width: 576px) {
@@ -150,8 +151,11 @@
                             <h2>Your Profile</h2>
                         </div>
                         <div class="d-flex col-sm flex-row justify-content-center action-btns align-items-center">
-                            <a class="btn btn-primary" href="/profiles/<%= profile.id %>/edit"><i class="bi bi-pen"></i></a>
-                            <button class="btn btn-danger" onclick="onDeleteProfile('<%= profile.id %>')">Delete</button>
+                            <a class="btn btn-primary" href="/profiles/<%= profile.id %>/edit">Edit <i
+                                        class="bi bi-pen"></i></a>
+                            <button class="btn btn-danger" onclick="onDeleteProfile('<%= profile.id %>')">Delete <i
+                                        class="bi bi-trash3"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -162,7 +166,7 @@
                         <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
                             <div class="row align-items-center">
                                 <div class="d-flex justify-content-center col-lg-6 mb-4 mb-lg-0">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="...">
+                                    <img class="img-thumbnail img-fluid" alt="<%= profile.name %>" src="../uploads/<%= profile.profilePicName %>">
                                 </div>
                                 <div class="col-lg-6 px-xl-10">
                                     <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
@@ -184,10 +188,10 @@
                                     </ul>
                                     <ul style="font-size: 20px"
                                         class="social-icon-style1 list-unstyled mb-0 ps-0 d-flex flex-row justify-content-around">
-                                        <li><a href="#!"><i class="bi-twitter"></i></a></li>
-                                        <li><a href="#!"><i class="bi-facebook"></i></a></li>
-                                        <li><a href="#!"><i class="bi-pinterest"></i></a></li>
-                                        <li><a href="#!"><i class="bi-instagram"></i></a></li>
+                                        <li><a><i class="bi-twitter"></i></a></li>
+                                        <li><a><i class="bi-facebook"></i></a></li>
+                                        <li><a><i class="bi-pinterest"></i></a></li>
+                                        <li><a><i class="bi-instagram"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -197,7 +201,7 @@
                 <!-- Info -->
                 <div class="col-lg-12 mb-4 mb-sm-5">
                     <div>
-                        <span class="section-title text-primary mb-3 mb-sm-4">About Me</span>
+                        <span style="color: #5026FD" class="section-title mb-3 mb-sm-4">About Me</span>
                         <p>
                             <%= profile.info %>
                         </p>
@@ -206,7 +210,7 @@
                 <!-- Offered Products -->
                 <div class="col-lg-12 mb-4 mb-sm-5">
                     <div class="d-flex justify-content-between">
-                        <span class="section-title text-primary mb-3 mb-sm-4">Products</span>
+                        <span style="color: #5026FD" class="section-title mb-3 mb-sm-4">Products</span>
                         <!-- Add Products -->
                         <a class="btn btn-primary" style="height: fit-content"
                            href="/addProduct">Add Product</a>
@@ -218,19 +222,16 @@
                                 <div class="d-flex flex-row product-entry justify-content-between">
                                     <div class="accordion-item col-10">
                                         <h2 class="accordion-header">
-                                            <button class="accordion-button collapsed d-flex flex-row justify-content-between align-items-center"
+                                            <button style="justify-content: space-between"
+                                                    class="accordion-button collapsed d-flex flex-row align-items-center"
                                                     type="button"
                                                     data-bs-toggle="collapse"
                                                     data-bs-target="#collapse<%= products[i].id %>"
                                                     aria-expanded="false"
                                                     aria-controls="collapse<%= products[i].id %>">
-                                                    <p class="m-0">
-                                                        <%= products[i].title %>
-                                                    </p>
-                                                    <p class="m-0">
-                                                        <strong><%= products[i].price %>€</strong>
-                                                    </p>
-                                                    <a class="btn btn-primary" href="/products/<%= products[i].id %>/edit"><i class="bi bi-pen"></i></a>
+                                                <a href="/products/<%= products[i].id %>" class="m-0">
+                                                    <%= products[i].title %> <strong><%= products[i].price %>€</strong>
+                                                </a>
                                             </button>
                                         </h2>
                                         <div id="collapse<%= products[i].id %>"
@@ -241,7 +242,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a class="btn btn-danger col-2  align-self-center p-2 m-2" onclick="onDeleteProduct('<%= products[i].id %>')">Delete</a>
+                                    <a class="btn btn-primary col-1 p-2 m-3 d-flex flex-row align-items-center justify-content-center align-self-center"
+                                       href="/products/<%= products[i].id %>/edit">
+                                        <p class="d-none d-lg-block m-0 p-1">Edit </p>
+                                        <i class="bi bi-pen"></i>
+                                    </a>
+                                    <a class="btn btn-danger col-1 d-flex flex-row align-items-center justify-content-center align-self-center p-2 m-2"
+                                       onclick="onDeleteProduct('<%= products[i].id %>')">
+                                        <p class="d-none d-lg-block m-0 p-1">Delete </p>
+                                        <i class="bi bi-trash3"></i>
+                                    </a>
                                 </div>
                             <% } %>
                         <% } %>

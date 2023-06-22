@@ -1,4 +1,4 @@
-const productModel = require("../models/productModel.js");
+const productModel = require("../models/productModel");
 const profileModel = require('../models/profileModel');
 
 //Gets the products from the database and renders the products (all products)
@@ -39,8 +39,6 @@ function editProduct(req, res, next) {
     productModel.getProductById(parseInt(req.params.id))
         .then((product) => {
             let profileId = req.params.id;
-            console.log(req.params.id, "req.params.id")
-            console.log(product, "I am the product")
             res.render("editProduct", {product, profileId});
         })
         .catch((err) => {
@@ -53,9 +51,6 @@ function editProduct(req, res, next) {
 function updateProduct(req, res, next) {
     productModel.updateProduct(req.body, req.params.id)
         .then((product) => {
-            console.log(req.body, "req.body")
-            console.log(req.params.id, "req.params.id2")
-
             res.render("product", {product, profile: req.profile});
         })
         .catch((err) => {
@@ -66,7 +61,6 @@ function updateProduct(req, res, next) {
 
 //Adds a product to the database and renders the product page (single product)
 function addProduct(req, res, next) {
-
     productModel.addProduct(req.body)
         .then((product) => {
             res.redirect("/products/" + product.insertId);

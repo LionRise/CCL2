@@ -13,7 +13,7 @@
                 <img
                         src="/images/team.png"
                         height="30"
-                        alt="MDB Logo"
+                        alt="Logo of MarketHub"
                         loading="lazy"
                 />
             </a>
@@ -33,24 +33,25 @@
         </div>
         <!-- Right elements -->
         <div class="d-flex flex-wrap align-items-center">
-            <button type="button" class="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#cartModal">
+            <a href="/cart" type="button" class="btn btn-outline-dark me-2">
                 <i class="bi bi-cart"></i>
                 <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-            </button>
+            </a>
             <!-- Avatar -->
-            <div class="nav-item dropdown">
-                <a
+            <div role="listbox" class="nav-item dropdown">
+                <a      tabindex="0"
                         class="nav-link dropdown-toggle d-flex align-items-center hidden-arrow"
                         id="navbarDropdownMenuAvatar"
                         role="button"
                         data-bs-toggle="dropdown"
+                        aria-haspopup="true"
                         aria-expanded="false"
                 >
                     <img
                             src="/images/user_lila.png"
                             class="nav-link dropdown-toggle rounded-circle"
                             height="25"
-                            alt="Black and White Portrait of a Man"
+                            alt="Profile image"
                             loading="lazy"
                     />
                 </a>
@@ -58,8 +59,8 @@
                         class="dropdown-menu-end dropdown-menu"
                         aria-labelledby="navbarDropdownMenuAvatar"
                 >
-                    <li>
-                        <a class="dropdown-item" href="<%= getProfileUrl()%>">My profile</a>
+                    <li tabindex="0">
+                        <a class="dropdown-item" href="/profiles/profile ">My profile</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="/favourites">Favourites</a>

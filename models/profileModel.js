@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 // Handles the database calls for the profile routes
 let getProfiles = () => new Promise((resolve, reject) => {
-    const query = "SELECT * FROM profiles";
+    const query = "SELECT * FROM profiles WHERE profiles.profilePicName IS NOT NULL";
     db.query(query, function (err, profiles, fields) {
         if (err) {
             reject(err);
@@ -17,12 +17,11 @@ let getProfileById = (id) => new Promise((resolve, reject) => {
     const query = `SELECT profiles.*, products.*
                    FROM profiles
                    LEFT JOIN products ON profiles.id = products.fk_profileid
-                   WHERE profiles.id = ?`;
+                   WHERE profiles.id = ? AND profiles.profilePicName IS NOT NULL`;
     db.query(query, [id], function (err, products, fields) {
         if (err) {
             reject(err);
         } else {
-            console.log(products, "products");
             resolve(products[0]);
         }
     });
@@ -36,7 +35,6 @@ let updateProfile = (profileData, id) => new Promise((resolve, reject) => {
         if (err) {
             reject(err);
         } else {
-            console.log(result.affectedRows + " rows have been affected!");
             profileData.id = id;
             resolve(profileData);
         }
@@ -47,8 +45,8 @@ let updateProfile = (profileData, id) => new Promise((resolve, reject) => {
 let addProfile = (profileData) => new Promise(async (resolve, reject) => {
     try {
         const hashedPassword = await bcrypt.hash(profileData.password, 10);
-        const query = "INSERT INTO profiles (name, email, info, password) VALUES (?, ?, ?, ?)";
-        const values = [profileData.name, profileData.email, profileData.info, hashedPassword];
+        const query = "INSERT INTO profiles (name, email, info, password, profilePicName) VALUES (?, ?, ?, ?, ?)";
+        const values = [profileData.name, profileData.email, profileData.info, hashedPassword, profileData.profilePicName];
         db.query(query, values, function (err, result, fields) {
             if (err) {
                 reject(err);
@@ -69,7 +67,6 @@ let deleteProfile = (id) => new Promise((resolve, reject) => {
         if (err) {
             reject(err);
         } else {
-            console.log(result.affectedRows + " rows have been affected!");
             resolve();
         }
     });

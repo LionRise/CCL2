@@ -6,6 +6,7 @@ const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 
 //This function is used to check if the password is correct
 async function checkPassword(password, hash) {
+    console.log("checkPassword function")
     return await bcrypt.compare(password, hash);
 }
 
@@ -20,31 +21,30 @@ async function authenticateProfile({email, password}, profiles, res, next) {
     //If the profile exists and the password is correct, we create a token and redirect the profile to the profile page
     if(profile && await checkPassword(password, profile.password)) {
         id = profile.id;
-
         const accessToken = jwt.sign({ id: profile.id, name: profile.name }, ACCESS_TOKEN_SECRET, { expiresIn: '30m' });
         loggedin = true;
-        res.cookie("accessToken", accessToken);
-        res.cookie("profileid", profile.id)
-        res.cookie("profilename", profile.name)
+        res.cookie("accessToken", accessToken, {maxAge: 7200000});
+        res.cookie("profileid", profile.id, {maxAge: 7200000})
+        res.cookie("profilename", profile.name, {maxAge: 7200000})
+        res.cookie("loggedin", loggedin, {maxAge: 7200000})
         res.redirect("/profiles/" + profile.id);
     } else {
         next("Email or password incorrect!");
     }
 }
 
-function goToProfile(profile, res, loggedin, next) {
-
-    if (!loggedin) {
-        res.render("login");
-        console.log("Profile is not logged in");
+function goToProfile(profile, res, loggedin) {
+    console.log("loggedin: " + loggedin)
+    if (loggedin && !profile) {
+        res.status(401).redirect("../login");
     } else {
         res.redirect("/profiles/" + profile.id);
-        console.log("Profile is logged in");
+        console.log("authenticate.js goToProfile logged in");
     }
 }
 
-function getProfileUrl() {
-    return "/profiles/" + id;
+function getProfileUrl(loggedin, id) {
+    return !loggedin ? "/login" : "/profiles/" + id;
 }
 
 //This function is used to authenticate the JWT
@@ -58,6 +58,7 @@ function authenticateJWT(req, res, next) {
                 next("Not logged in");
             }
             console.log(profile);
+            console.log("authenticate.js authenticateJWT");
             req.profile = profile;
             next();
         });
