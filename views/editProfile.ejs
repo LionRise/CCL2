@@ -10,53 +10,57 @@
 </head>
 
 <body>
-<header ><%- include('./partials/navBar'); %></header>
-<main class="d-flex justify-content-center">
-    <form action="/profiles/" method="post" id="add-profile-form"
-          class="shadow-lg p-3 mb-5 bg-white rounded d-flex flex-column" enctype="multipart/form-data">
-        <img src="../../uploads/<%= profile.profilePicName %>" alt="<%= profile.name%>" class="img-thumbnail img-fluid" style="align-self: center;">
+<header><%- include('./partials/navBar'); %></header>
+<main style="margin-top: 70px; width: 50%">
+    <div class="d-flex justify-content-center">
+        <form style="width: auto" role="form" action="/profiles/" method="post" id="add-profile-form"
+              class="m-0 shadow-lg p-5 bg-white rounded" enctype="multipart/form-data">
+            <img src="../../uploads/<%= profile.profilePicName %>" alt="<%= profile.name %>"
+                 class="img-thumbnail img-fluid" style="align-self: center;">
 
 
-        <!-- Name input -->
-        <div class="form-floating mb-3 mt-3">
-            <input type="text" id="inputName" name="name" class="form-control" placeholder="Name"
-                   value="<%= profile.name %>"/>
-            <label class="form-label" for="inputName" style="margin-left: 0.75rem">Name</label>
-        </div>
+            <!-- Name input -->
+            <div class="form-floating mb-3 mt-3">
+                <input type="text" id="inputName" name="name" id="inputName" class="form-control" placeholder="Name"
+                       value="<%= profile.name %>"/>
+                <label class="form-label" for="inputName">Name</label>
+            </div>
 
-        <!-- Email input -->
-        <div class="form-floating mb-3">
-            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email Address"
-                   value="<%= profile.email %>"/>
-            <label class="form-label" for="inputEmail">Email address</label>
-        </div>
+            <!-- Email input -->
+            <div class="form-floating mb-3">
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email Address"
+                       value="<%= profile.email %>"/>
+                <label class="form-label" for="inputEmail">Email address</label>
+            </div>
 
-        <!-- Info input -->
-        <div class="form-floating mb-3">
-            <input type="text" name="info" id="inputInfo" class="form-control" placeholder="<%= profile.info %>"
-                   value="<%= profile.info %>"/>
-            <label class="form-label" for="inputInfo">Info:</label>
-        </div>
+            <!-- Info input -->
+            <div class="form-floating mb-3">
+                <textarea type="text" name="info" id="inputInfo" class="form-control" placeholder="<%= profile.info %>"
+                          rows="4" value="<%= profile.info %>"><%= profile.info %></textarea>
+                <label class="form-label" for="inputInfo">Info:</label>
+            </div>
 
-        <!-- Password input -->
-        <div class="form-floating mb-5">
-            <label class="form-label" hidden="hidden" aria-hidden="true" for="inputPassword">Password</label>
-            <input type="password" hidden="hidden" id="inputPassword" name="password" class="form-control" placeholder="Password" value="<%= profile.password %>"/>
-        </div>
+            <!-- Password input -->
+            <div class="form-floating mb-5">
+                <label class="form-label" hidden="hidden" aria-hidden="true" for="inputPassword">Password</label>
+                <input type="password" hidden="hidden" id="inputPassword" name="password" class="form-control"
+                       placeholder="Password" value="<%= profile.password %>"/>
+            </div>
 
-        <!-- Image input -->
-        <input type="hidden" name="profilePicName" id="profilePicName" value="<%= profile.profilePicName %>"
-               accept="image/jpeg, image/png, image/jpg" class="form-control"/>
+            <!-- Image input -->
+            <input type="hidden" name="profilePicName" id="profilePicName" value="<%= profile.profilePicName %>"
+                   accept="image/jpeg, image/png, image/jpg" class="form-control"/>
 
-        <input type="hidden" name="profileId" id="profileId" value="<%= profile.fk_profileid %>" class="form-control"/>
+            <input type="hidden" name="profileId" id="profileId" value="<%= profile.fk_profileid %>"
+                   class="form-control"/>
 
-        <!-- Submit button -->
-        <div class="d-flex flex-row justify-content-end action-btns">
-            <a class="btn btn-light btn-md" id="cancel" href="/profiles/<%= profile.fk_profileid %>">Cancel</a>
-            <button type="submit" class="btn btn-success btn-md">Save</button>
-        </div>
-
-    </form>
+            <!-- Submit button -->
+            <div class="d-flex flex-row justify-content-end action-btns">
+                <a class="btn btn-light btn-md" id="cancel" href="/profiles/<%= profile.fk_profileid %>">Cancel</a>
+                <button type="submit" class="btn btn-success btn-md">Save</button>
+            </div>
+        </form>
+    </div>
 </main>
 </body>
 

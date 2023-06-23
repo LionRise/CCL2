@@ -107,7 +107,7 @@
                     </div>
                     <p class="card-text">${product.title}</p>
                     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                        <form action="/addToCart" method="post">
+                        <form action="/addToCart" class="me-2" method="post">
                             <input type="hidden" name="productId" value="${product.id}">
                             <button type="submit" class="btn btn-primary">Add to Cart</button>
                         </form>
@@ -161,13 +161,11 @@
                                         </div>
                                         <h6 class="text-success">Free shipping</h6>
                                         <div class="mt-4">
-                                            <button class="btn btn-primary shadow-0" type="button">
-                                                <a href="/products/${product.id}" class="text-white">
-                                                    Buy this
-                                                    <i class="me-1 bi bi-cart"></i>
-                                                </a>
-                                            </button>
-                                            <a class="btn btn-light border px-2 pt-2 icon-hover"><i class="bi bi-heart fa-lg px-1"></i>Save</a>
+                                                <form action="/addToCart" class="mb-2" method="post">
+                                                    <input type="hidden" name="productId" value="${product.id}">
+                                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                                </form>
+                                            <a class="btn btn-light disabled border px-2 pt-2 icon-hover"><i class="bi bi-heart fa-lg px-1"></i>Save</a>
                                         </div>
                                     </div>
                                 </div>

@@ -10,51 +10,61 @@
 </head>
 
 <body>
-<header ><%- include('./partials/navBar'); %></header>
-<main class="d-flex justify-content-center">
-    <form action="/products/<%= product.id %>" method="post" id="add-profile-form" class="shadow-lg p-3 mb-5 bg-white rounded d-flex flex-column" enctype="multipart/form-data">
-        <img src="../../uploads/<%= product.productPicName %>" alt="<%= profile.name%>" width="150px" style="align-self: center;">
-        <!-- Product title input -->
-        <div class="form-floating mb-3">
-            <input type="text" value="<%= product.title %>" id="inputTitle" name="title" class="form-control" placeholder="<%= product.title %>"/>
-            <label class="form-label" for="inputTitle">Title:</label>
-        </div>
-        <div class="row mb-3">
-
-            <!-- Price input -->
-            <div class="col form-floating">
-                <input type="number" name="price" value="<%= product.price %>" id="inputPrice" class="form-control" placeholder="<%= product.price %>"/>
-                <label class="form-label" for="inputPrice" style="margin-left: 0.75rem">Price:</label>
+<header><%- include('./partials/navBar'); %></header>
+<main style="margin-top: 70px; width: 50%">
+    <div class="d-flex justify-content-center overflow-contain">
+        <form style="width: auto" role="form" action="/products/<%= product.id %>" method="post" id="add-profile-form"
+              class="shadow-lg p-3 mb-5 bg-white rounded d-flex flex-column" enctype="multipart/form-data">
+            <img src="../../uploads/<%= product.productPicName %>" alt="<%= product.title %>" width="150px"
+                 style="align-self: center;">
+            <!-- Product title input -->
+            <div class="form-floating mb-3">
+                <input type="text" value="<%= product.title %>" id="inputTitle" name="title" class="form-control"
+                       placeholder="<%= product.title %>"/>
+                <label class="form-label" for="inputTitle">Title:</label>
             </div>
-        </div>
-        <!-- State input -->
-        <div class="form-floating mb-3">
-            <input type="text" name="state" class="form-control" id="inputState" value="<%= product.state %>" placeholder="<%= product.state %>"/>
-            <label class="form-label" for="inputState">Condition:</label>
-        </div>
+            <div class="row mb-3">
 
-        <!-- Description input -->
-        <div class="form-floating mb-5">
-            <input type="text" name="description" value="<%= product.description %>" id="inputDescription" class="form-control" placeholder="<%= product.description %>"/>
-            <label class="form-label" for="inputDescription">Description:</label>
-        </div>
+                <!-- Price input -->
+                <div class="col form-floating">
+                    <input type="number" name="price" value="<%= product.price %>" id="inputPrice" class="form-control"
+                           placeholder="<%= product.price %>"/>
+                    <label class="form-label" for="inputPrice" style="margin-left: 0.75rem">Price:</label>
+                </div>
+            </div>
 
-        <!-- Image input -->
-        <input type="hidden" name="productPicName" id="productPicName" value="<%= product.productPicName %>" accept="image/jpeg, image/png, image/jpg" class="form-control" />
+            <!-- State input -->
+            <div class="form-floating mb-3">
+                <input type="text" name="state" class="form-control" id="inputState" value="<%= product.state %>"
+                       placeholder="<%= product.state %>"/>
+                <label class="form-label" for="inputState">Condition:</label>
+            </div>
 
-        <!-- profile id input -->
-        <input type="hidden" name="fk_profileid" value="<%= product.fk_profileid %>">
+            <!-- Description input -->
+            <div class="form-floating mb-5">
+                <textarea type="text" name="description" value="<%= product.description %>" id="inputDescription"
+                          rows="4" class="form-control"
+                          placeholder="<%= product.description %>"><%= product.description %></textarea>
+                <label class="form-label" for="inputDescription">Description:</label>
+            </div>
 
-        <!-- isActive input -->
-        <input type="hidden" name="isActive" placeholder="1" value="1">
+            <!-- Image input -->
+            <input type="hidden" name="productPicName" id="productPicName" value="<%= product.productPicName %>"
+                   accept="image/jpeg, image/png, image/jpg" class="form-control"/>
 
-        <!-- Submit button -->
-        <div class="d-flex flex-row justify-content-end action-btns">
-            <a class="btn btn-light btn-md" id="cancel" href="/products/<%= product.product_id %>">Cancel</a>
-            <button type="submit" class="btn btn-success btn-md">Save</button>
-        </div>
+            <!-- profile id input -->
+            <input type="hidden" name="fk_profileid" value="<%= product.fk_profileid %>">
 
-    </form>
+            <!-- isActive input -->
+            <input type="hidden" name="isActive" placeholder="1" value="1">
+
+            <!-- Submit button -->
+            <div class="d-flex flex-row justify-content-end action-btns">
+                <a class="btn btn-light btn-md" id="cancel" href="/products/<%= product.product_id %>">Cancel</a>
+                <button type="submit" class="btn btn-success btn-md">Save</button>
+            </div>
+        </form>
+    </div>
 </main>
 </body>
 
