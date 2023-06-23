@@ -28,14 +28,13 @@ let getProfileById = (id) => new Promise((resolve, reject) => {
 });
 
 
-let updateProfile = (profileData, id) => new Promise((resolve, reject) => {
+let updateProfile = (profileData) => new Promise((resolve, reject) => {
     const query = "UPDATE profiles SET name = ?, email = ?, info = ? WHERE id = ?";
-    const values = [profileData.name, profileData.email, profileData.info, id];
+    const values = [profileData.name, profileData.email, profileData.info, profileData.profileId];
     db.query(query, values, function (err, result, fields) {
         if (err) {
             reject(err);
         } else {
-            profileData.id = id;
             resolve(profileData);
         }
     });

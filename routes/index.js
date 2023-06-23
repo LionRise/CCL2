@@ -16,7 +16,6 @@ router.get("/", (req, res) => {
     // Retrieve the products from the database using productModel
     productModel.getProducts()
         .then((products) => {
-            console.log(authenticationService.loggedin, "loggedin");
             // Pass the products to the rendered page
             res.render("index", {products});
         })
@@ -29,7 +28,6 @@ router.get("/", (req, res) => {
 router.route("/myProfile")
     .get((req, res, next) => {
         authenticationService.goToProfile(req.profile, res, next);
-        console.log(authenticationService.loggedin, "loggedin");
     });
 
 router.get('/products', async (req, res, next) => {
@@ -40,7 +38,6 @@ router.get('/products', async (req, res, next) => {
 
         // Pass the profile variable to the template
         const profile = req.profile;
-        console.log(authenticationService.loggedin, "loggedin");
 
         // Render the template and pass the products
         res.render('products', {products: products, profiles: profiles, profile: profile});
@@ -72,8 +69,6 @@ router.get("/logout", (req, res, next) => {
     res.cookie( "profileid", 0)
     res.cookie( "loggedin", authenticationService.loggedin)
     res.cookie("accessToken", "", {maxAge: 0});
-    console.log(authenticationService.loggedin, "loggedin");
-    console.log(req.cookies, "cookie");
     res.redirect("/");
 });
 
@@ -100,27 +95,29 @@ router.get("/addProfile", (req, res) => {
 });
 
 router.get("/cart", (req, res, next) => {
-    res.render("cart");
+    cartItemsModel.joinedCartItems(req.cookies.profileid)
+        .then((cartItems) => {
+            res.render("cart", {cartItems});
+        });
 })
 
 // Example route handler for adding a product to the cart
 router.post("/addToCart", (req, res) => {
     // Extract the necessary data from the request body or query parameters
-    console.log(req.body, "req.body"); // Log the entire req.body object
     const profileId = req.cookies.profileid;
-    const productId = req.body.id;
+    const productId = req.body.productId;
 
     // Call the addToCart function with the retrieved data
     cartItemsModel.addToCart(profileId, productId)
         .then((result) => {
             console.log("Product added to the cart successfully");
             // Handle success response, such as sending a response to the client
-            res.status(200).send("Product added to the cart successfully");
+            res.status(204).send("Product added to the cart successfully");
         })
         .catch((err) => {
             console.error("Error adding product to the cart", err);
             // Handle error response, such as sending an error message to the client
-            res.status(500).send("Error adding product to the cart");
+            res.status(500).send("You can't add products to the cart if you're not logged in.");
         });
 });
 

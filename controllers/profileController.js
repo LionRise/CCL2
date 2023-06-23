@@ -60,9 +60,9 @@ function editProfile(req, res, next) {
 
 //Updates a profile by id from the database and renders the profile page (single profile)
 function updateProfile(req, res, next) {
-    profileModel.updateProfile(req.body, req.params.id)
+    profileModel.updateProfile(req.body)
         .then((profile) => {
-            res.render("profile", {profile});
+            res.redirect("/profiles/" + req.body.profileId);
         })
         .catch((err) => {
             res.status(404);
@@ -75,7 +75,6 @@ function updateProfile(req, res, next) {
 function addProfile(req, res, next) {
     profileModel.addProfile(req.body)
         .then((profile) => {
-            console.log("profileController addProfile. I've been called!")
             authenticationService.loggedin = true;
             res.cookie("profileid", profile.id);
             res.cookie("loggedin", authenticationService.loggedin);

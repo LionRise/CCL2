@@ -6,7 +6,6 @@ const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 
 //This function is used to check if the password is correct
 async function checkPassword(password, hash) {
-    console.log("checkPassword function")
     return await bcrypt.compare(password, hash);
 }
 
@@ -34,12 +33,12 @@ async function authenticateProfile({email, password}, profiles, res, next) {
 }
 
 function goToProfile(profile, res, loggedin) {
-    console.log("loggedin: " + loggedin)
     if (loggedin && !profile) {
         res.status(401).redirect("../login");
     } else {
-        res.redirect("/profiles/" + profile.id);
-        console.log("authenticate.js goToProfile logged in");
+        if (profile === null) {
+            res.redirect("/login");
+        } else res.redirect("/profiles/" + profile.id);
     }
 }
 
@@ -57,8 +56,6 @@ function authenticateJWT(req, res, next) {
             if(err) {
                 next("Not logged in");
             }
-            console.log(profile);
-            console.log("authenticate.js authenticateJWT");
             req.profile = profile;
             next();
         });

@@ -65,47 +65,7 @@ router.get("/:id", profileController.getProfileById);
 // For editing the profile
 // Actually "put" is for updating and "post" is for creating => just for semester project
 router.get("/:id/edit", authenticationService.authenticateJWT, profileController.editProfile);
-router.post("/:id", authenticationService.authenticateJWT, profileController.updateProfile);
+router.post("/", authenticationService.authenticateJWT, profileController.updateProfile);
 router.get("/:id/delete", authenticationService.authenticateJWT, profileController.deleteProfile);
-
-// request a profile picture as a post
-router.route("/:id/picture")
-    .get((req, res) => {
-        let uID = req.params.id;
-        const filename = uID + ".jpg";
-        const options = {
-            root: path.join(__dirname, "../uploads")
-        };
-        res.sendFile(filename, options);
-    })
-    .post((req, res) => {
-        try {
-            if (!req.files) {
-                // handle what should happen if there is no request file
-                res.send({
-                    status: false,
-                    message: "No file uploaded",
-                });
-            } else {
-                // handle how to save the picture
-                let picture = req.files.picture;
-
-                let filename = "./uploads/" + req.params.id + ".jpg";
-                picture.mv(filename);
-                console.log("Picture saved to " + filename);
-
-                res.send({
-                    status: true,
-                    message: "File is uploaded",
-                    data: {
-                        name: picture.name,
-                        size: picture.size,
-                    }
-                });
-            }
-        } catch (err) {
-            res.status(500).send(err);
-        }
-    });
 
 module.exports = router;

@@ -6,59 +6,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('./partials/stylePlugin'); %>
-        <title>Server Side Coding</title>
+    <title>Server Side Coding</title>
 </head>
 
 <body>
-    <header style="z-index: 3"><%- include('./partials/navBar'); %></header>
-    <main class="d-flex justify-content-center">
-        <form action="/profiles/<%= profile.id %>" method="post" id="add-profile-form" class="shadow-lg p-3 mb-5 bg-white rounded d-flex flex-column">
-            <img src="/images/man.png" width="150px" style="align-self: center;">
-            <!-- Email input -->
-            <div class="form-floating mb-3 mt-3">
-                <input type="email" name="email" class="form-control" placeholder="Email Address"
-                    value="<%= profile.email %>" />
-                <label class="form-label" for="inputEmail">Email address</label>
-            </div>
-            <div class="row mb-3">
-                <!-- Name input -->
-                <div class="col form-floating">
-                    <input type="text" name="name" class="form-control" placeholder="Name"
-                        value="<%= profile.name %>" />
-                    <label class="form-label" for="inputName" style="margin-left: 0.75rem">Name</label>
-                </div>
-                <!-- Surname input -->
-                <div class="col form-floating">
-                    <input type="text" name="surname" class="form-control" placeholder="Surname"
-                        value="<%= profile.surname %>" />
-                    <label class="form-label" for="inputSurname" style="margin-left: 0.75rem">Surname</label>
-                </div>
-            </div>
+<header style="z-index: 3"><%- include('./partials/navBar'); %></header>
+<main class="d-flex justify-content-center">
+    <form action="/profiles/" method="post" id="add-profile-form"
+          class="shadow-lg p-3 mb-5 bg-white rounded d-flex flex-column" enctype="multipart/form-data">
+        <img src="../../uploads/<%= profile.profilePicName %>" class="img-thumbnail img-fluid" style="align-self: center;">
 
-            <!-- Hero input -->
-            <div class="form-floating mb-3">
-                <input type="text" name="hero" class="form-control" placeholder="Hero" value="<%= profile.hero %>" />
-                <label class="form-label" for="inputHero">Hero</label>
-            </div>
-            <!-- Info input -->
-            <div class="form-floating mb-3">
-                <input type="text"name="info" class="form-control" placeholder="Info" value="<%= profile.info %>" />
-                <label class="form-label" for="inputInfo">Info</label>
-            </div>
-            <!-- Password input -->
-            <div class="form-floating mb-5">
-                <input type="password"name="password" class="form-control" placeholder="Password" value="<%= profile.password %>" />
-                <label class="form-label" for="inputInfo">Password</label>
-            </div>
 
-            <!-- Submit button -->
-            <div class="d-flex flex-row justify-content-end action-btns">
-                <a class="btn btn-light btn-md" id="cancel" href="/profiles/<%= profile.id %>">Cancel</a>
-                <button type="submit" class="btn btn-success btn-md">Save</button>
-            </div>
+        <!-- Name input -->
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" name="name" class="form-control" placeholder="Name"
+                   value="<%= profile.name %>"/>
+            <label class="form-label" for="inputName" style="margin-left: 0.75rem">Name</label>
+        </div>
 
-        </form>
-    </main>
+        <!-- Email input -->
+        <div class="form-floating mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Email Address"
+                   value="<%= profile.email %>"/>
+            <label class="form-label" for="inputEmail">Email address</label>
+        </div>
+
+        <!-- Info input -->
+        <div class="form-floating mb-3">
+            <input type="text" name="info" class="form-control" placeholder="<%= profile.info %>"
+                   value="<%= profile.info %>"/>
+            <label class="form-label" for="inputHero">Hero</label>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-floating mb-5">
+            <input type="password" hidden="hidden" name="password" class="form-control" placeholder="Password" value="<%= profile.password %>"/>
+        </div>
+
+        <!-- Image input -->
+        <input type="hidden" name="profilePicName" id="profilePicName" value="<%= profile.profilePicName %>"
+               accept="image/jpeg, image/png, image/jpg" class="form-control"/>
+
+        <input type="hidden" name="profileId" id="profileId" value="<%= profile.fk_profileid %>" class="form-control"/>
+
+        <!-- Submit button -->
+        <div class="d-flex flex-row justify-content-end action-btns">
+            <a class="btn btn-light btn-md" id="cancel" href="/profiles/<%= profile.fk_profileid %>">Cancel</a>
+            <button type="submit" class="btn btn-success btn-md">Save</button>
+        </div>
+
+    </form>
+</main>
 </body>
 
 </html>

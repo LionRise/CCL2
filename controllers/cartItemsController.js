@@ -23,7 +23,7 @@ const addToCart = (req, res, next) => {
         })
         .catch((err) => {
             console.error("Error adding product to the cart", err);
-            res.status(500).send("Error adding product to the cart");
+            res.status(500).send("Error adding product to the cart Controller");
         });
 };
 
