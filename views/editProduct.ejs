@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<header style="z-index: 3"><%- include('./partials/navBar'); %></header>
+<header ><%- include('./partials/navBar'); %></header>
 <main class="d-flex justify-content-center">
     <form action="/products/<%= product.id %>" method="post" id="add-profile-form" class="shadow-lg p-3 mb-5 bg-white rounded d-flex flex-column" enctype="multipart/form-data">
         <img src="../../uploads/<%= product.productPicName %>" width="150px" style="align-self: center;">

@@ -10,14 +10,14 @@
 </head>
 
 <body>
-<header style="z-index: 3"><%- include('./partials/navBar'); %></header>
+<header ><%- include('./partials/navBar'); %></header>
 <main class="d-flex justify-content-start align-items-start flex-wrap">
 
     <% for(let i = 0; i < profiles.length; i++) { %>
         <!-- For each profile, add a profile card -->
         <a class="profile-card shadow bg-white mb-5 rounded" href="/profiles/<%= profiles[i].id %>">
             <!-- With an image -->
-            <img src="/images/man.png" width="65px">
+            <img src="../../uploads/<%= profiles[i].profilePicName %>" width="65px">
 
             <!-- And some data -->
             <div class="d-flex flex-column">

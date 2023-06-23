@@ -7,67 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%- include('./partials/stylePlugin'); %>
     <title>Server Side Coding</title>
-    <style>
-        a {
-            text-decoration: none;
-        }
-
-        .toggle-button {
-            display: flex;
-            align-items: center;
-            background-color: #f1f1f1;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .toggle-button:hover {
-            background-color: #e0e0e0;
-        }
-
-        .toggle-icon {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            margin-right: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .toggle-icon::after {
-            content: "";
-            display: block;
-            width: 12px;
-            height: 12px;
-            background-color: #d1d1d1;
-            border-radius: 50%;
-            margin: 6px;
-            transition: background-color 0.3s ease;
-        }
-
-        .toggle-button.active {
-            background-color: #0088cc;
-        }
-
-        .toggle-button.active .toggle-icon {
-            transform: translateX(30px);
-            background-color: #0088cc;
-        }
-
-        .toggle-button.active .toggle-icon::after {
-            background-color: #ffffff;
-        }
-
-    </style>
 </head>
 
-<body style="width: 100%">
-<header style="z-index: 3"><%- include('./partials/navBar'); %></header>
-<main style="width: 98%">
+<body>
+<header><%- include('./partials/navBar'); %></header>
+<main >
 
     <!-- sidebar + content -->
     <section class="">

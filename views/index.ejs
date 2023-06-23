@@ -13,27 +13,6 @@
             font-size: 12px;
         }
 
-        #navbarSupportedContent {
-            padding: 0;
-        }
-
-        #mySelect {
-            border: 1px solid #ced4da;
-            border-radius: .25rem;
-            padding: .375rem .75rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            background-color: #fff;
-            background-clip: padding-box;
-            width: 10%;
-            height: 100%;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
         #banner {
             background: #0D6EFD;
             color: white;
@@ -58,8 +37,8 @@
     </style>
 </head>
 
-<body style="width: 100%">
-<header style="z-index: 3"><%- include('./partials/navBar'); %></header>
+<body>
+<header><%- include('./partials/navBar'); %></header>
 <div id="banner" style="width: 100%" class="pt-5">
     <div class="container py-5">
         <h1>
@@ -76,7 +55,7 @@
         </button>
     </div>
 </div>
-<main style="z-index: 0; width: 98%; margin-top: 10px;">
+<main style="z-index: 0; margin-top: 10px;">
         <h2 class="col-8 text-center">
             Our favourite items
         </h2>

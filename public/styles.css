@@ -9,13 +9,21 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 }
 
 main {
-    width: 70vw;
     margin-top: 150px;
+}
+
+header {
+    z-index: 3;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 #icon-back {

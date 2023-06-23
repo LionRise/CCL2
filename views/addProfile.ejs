@@ -8,10 +8,10 @@
     <title>Add Profile</title>
 </head>
 <body>
-<header style="z-index: 3"><%- include('./partials/navBar'); %></header>
-<main style="z-index: 0; width: 98%; margin-top: 70px;">
+<header ><%- include('./partials/navBar'); %></header>
+<main style="margin-top: 70px;">
     <div class="d-flex justify-content-center">
-        <form role="form" action="/profiles/added" method="post" id="add-profile-form" class="m-0 shadow-lg p-5 bg-white rounded" enctype="multipart/form-data">
+        <form style="width: auto" role="form" action="/profiles/added" method="post" id="add-profile-form" class="m-0 shadow-lg p-5 bg-white rounded" enctype="multipart/form-data">
             <h3 class="mb-3">Add Profile</h3>
             <!-- Email input -->
             <div class="form-group">
