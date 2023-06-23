@@ -8,7 +8,6 @@ const wss = new WebSocket.Server({ port: 8080 });
 wss.on("connection", (ws) => {
     ws.room = "";
     ws.on("message", (message) => {
-        // websocketSendToAll(`${message}`);
         console.log(`Received message => ${message}`);
         let msg = JSON.parse(message);
         //This is where we handle the message. It is a simple echo server. Joining a room is handled here. It works like this: {joinRoom: "room1"} or {room: "room1", message: "Hello World!"}, where "room1" is the name of the room
@@ -28,4 +27,4 @@ function websocketSendToAll(text) {
             }
         }
     });
-};
+}

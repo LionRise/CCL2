@@ -3,27 +3,27 @@ const profileModel = require('../models/profileModel');
 
 //Gets the products from the database and renders the products (all products)
 function getProducts(req, res, next) {
-    productModel.getProducts()
+    productModel.getProducts() // calls the getProducts function in the productModel
         .then((products) => {
-            res.render("products", {products});
+            res.render("products", {products}); //renders the products page and passes the products variable
         })
         .catch((err) => {
-            res.status(404);
-            next(err)
+            res.status(404); // if there is an error, it will render the 404 page
+            next(err) // passes the error to the next function
         });
 }
 
 //Gets a product by id from the database and renders the product page (single product)
 async function getProductById(req, res, next) {
     try {
-        const productId = req.params.id;
+        const productId = req.params.id; // Get the product ID from the request parameters
 
         // Fetch the product by ID from the database
         const product = await productModel.getProductById(productId);
 
-        // Fetch the profile data (assuming you have a method like getProfileById in profileModel)
-        const profileId = req.cookies.profileid;
-        const profile = await profileModel.getProfileById(profileId);
+        // Fetch the profile data
+        const profileId = req.cookies.profileid; // Get the profile ID from the cookie
+        const profile = await profileModel.getProfileById(profileId); // Fetch the profile data from the database
 
         // Render the product.ejs template and pass the product and profile data
         res.render('product', {product: product, profile: profile});
@@ -93,7 +93,6 @@ function deleteProduct(req, res, next) {
             res.status(404);
             next(err)
         });
-
 }
 
 //Exports the functions

@@ -18,9 +18,9 @@ function getProfiles(req, res, next) {
 //Also passes the products to the profile page
 async function getProfileById(req, res, next) {
     try {
-        const [profile, products] = await Promise.all([
-            profileModel.getProfileById(+req.params.id),
-            productModel.getProducts()
+        const [profile, products] = await Promise.all([ //Promise.all() allows us to run multiple promises at the same time
+            profileModel.getProfileById(+req.params.id), //+req.params.id converts the id from a string to a number
+            productModel.getProducts()                  //gets all the products
         ]);
 
         profile.id = req.params.id;
@@ -31,6 +31,7 @@ async function getProfileById(req, res, next) {
     }
 }
 
+//Gets a profile by id from the cookie and renders the profile page (single profile)
 async function getProfileByCookieId(req, res) {
     try {
         const [profile, products] = await Promise.all([
@@ -70,7 +71,6 @@ function updateProfile(req, res, next) {
         });
 }
 
-//needed
 //Adds a profile to the database and renders the profile page (single profile)
 function addProfile(req, res, next) {
     profileModel.addProfile(req.body)
@@ -129,10 +129,10 @@ async function register(req, res, next) {
     }
 }
 
-
+//Generates a random uuid
 function broofa() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
 }

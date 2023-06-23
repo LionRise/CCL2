@@ -26,22 +26,6 @@ a {
     color: inherit;
 }
 
-#icon-back {
-    width: 35px;
-    font-size: 20px;
-}
-
-#nav-avatar {
-    padding-right: 16px;
-}
-
-#nav-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center
-}
-
 header {
     position: fixed;
     width: 100vw;
@@ -64,7 +48,7 @@ header {
 }
 
 .profile-card > div > p {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 #add-profile-card {
@@ -115,10 +99,6 @@ header {
     gap: 40px;
 }
 
-#input-ctrl {
-    display: flex;
-    flex-direction: column;
-}
 
 #inner-messages > div > .chat-msg {
     background-color: #d8d8d8;

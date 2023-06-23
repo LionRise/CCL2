@@ -7,15 +7,21 @@ const path = require("path");
 const profileModel = require("../models/profileModel");
 const {loggedin} = require("../services/authentication");
 
-
+//Gets all the profiles from the database and renders the profiles page
 router.get("/", profileController.getProfiles);
 
+//Gets the profile by id from the database and renders the logged in profile page
 router.get ("/profile", async (req, res,next) => {
-    let loggedin = req.cookies.loggedin;
-    let profile = await profileController.getProfileByCookieId(req,res);
-    authenticationService.goToProfile(profile, res, loggedin);
+    let loggedin = req.cookies.loggedin; // saves loggedin in the cookie
+    let profile = await profileController.getProfileByCookieId(req,res); // gets the profile by cookie id
+    authenticationService.goToProfile(profile, res, loggedin); // goes to profile
 });
 
+
+//Gets the profile by id from the database and renders the profile page (for looking at the profile from the product)
+router.get("/:id", profileController.getProfileById);
+
+// For adding the profile
 router.post("/added", (req, res) => {
     try {
         if (!req.files) {
@@ -51,21 +57,21 @@ router.post("/added", (req, res) => {
     }
 });
 
+// For the profile picture
 function broofa() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
 }
 
-
-router.get("/:id", profileController.getProfileById);
-
-
 // For editing the profile
-// Actually "put" is for updating and "post" is for creating => just for semester project
 router.get("/:id/edit", authenticationService.authenticateJWT, profileController.editProfile);
+
+// For updating the profile
 router.post("/", authenticationService.authenticateJWT, profileController.updateProfile);
+
+// For deleting the profile
 router.get("/:id/delete", authenticationService.authenticateJWT, profileController.deleteProfile);
 
 module.exports = router;

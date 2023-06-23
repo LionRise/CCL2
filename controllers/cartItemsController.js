@@ -1,22 +1,10 @@
 const cartItemsModel = require("../models/cartItemsModel");
 
-//Gets the cartItems from the database and renders the cartItems (all cartItems)
-function getCartItems(req, res, next) {
-    cartItemsModel.getCartItems()
-        .then((cartItems) => {
-            res.render("cart", {cartItems});
-        })
-        .catch((err) => {
-            res.status(404);
-            next(err)
-        });
-}
-
 // Function to add a product to the cart
 const addToCart = (req, res, next) => {
-    const { profileId, productId } = req.body;
+    const { profileId, productId } = req.body; // Extract the necessary data from the request body or query parameters
 
-    cartItemsModel.addToCart(profileId, productId)
+    cartItemsModel.addToCart(profileId, productId)// Call the addToCart function with the retrieved data
         .then(() => {
             console.log("Product added to the cart successfully");
             res.status(200).send("Product added to the cart successfully");
@@ -28,7 +16,7 @@ const addToCart = (req, res, next) => {
 };
 
 
+
 module.exports = {
-    getCartItems,
     addToCart,
 }

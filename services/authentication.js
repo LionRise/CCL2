@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const productModel = require("../models/productModel");
 
-const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET; //This is the secret key used to create the token
 
 //This function is used to check if the password is correct
 async function checkPassword(password, hash) {
@@ -22,6 +22,7 @@ async function authenticateProfile({email, password}, profiles, res, next) {
         id = profile.id;
         const accessToken = jwt.sign({ id: profile.id, name: profile.name }, ACCESS_TOKEN_SECRET, { expiresIn: '30m' });
         loggedin = true;
+        //Save it all in the cookie
         res.cookie("accessToken", accessToken, {maxAge: 7200000});
         res.cookie("profileid", profile.id, {maxAge: 7200000})
         res.cookie("profilename", profile.name, {maxAge: 7200000})
@@ -32,6 +33,7 @@ async function authenticateProfile({email, password}, profiles, res, next) {
     }
 }
 
+//This function is used to check if the profile is logged in and redirects accordingly
 function goToProfile(profile, res, loggedin) {
     if (loggedin && !profile) {
         res.status(401).redirect("../login");
@@ -42,6 +44,7 @@ function goToProfile(profile, res, loggedin) {
     }
 }
 
+//This function is used to get the profile url
 function getProfileUrl(loggedin, id) {
     return !loggedin ? "/login" : "/profiles/" + id;
 }

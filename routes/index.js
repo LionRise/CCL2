@@ -4,14 +4,13 @@ const router = express.Router();
 const profileController = require("../controllers/profileController");
 const profileModel = require("../models/profileModel");
 const cartItemsModel = require("../models/cartItemsModel");
-const productController = require("../controllers/productController");
 const productModel = require("../models/productModel");
 const authenticationService = require("../services/authentication");
 const path = require("path");
-const {auth} = require("mysql/lib/protocol/Auth");
 
 let storage = {};
 
+// Get for the home page. Gets all the products from the database and renders the home page
 router.get("/", (req, res) => {
     // Retrieve the products from the database using productModel
     productModel.getProducts()
@@ -25,31 +24,19 @@ router.get("/", (req, res) => {
         });
 });
 
+// Post for the home page. Initial rendering
+router.post("/", (req, res, next) => {
+    storage = req.body;
+    res.send("Received your post request");
+});
+
+// Routes to the profile or renders the login page
 router.route("/myProfile")
     .get((req, res, next) => {
         authenticationService.goToProfile(req.profile, res, next);
     });
 
-router.get('/products', async (req, res, next) => {
-    try {
-        // Fetch the products from the database
-        const products = await productModel.getProducts(); // Assuming getProducts() returns a promise
-        const profiles = await profileModel.getProfiles(); // Assuming getProducts() returns a promise
-
-        // Pass the profile variable to the template
-        const profile = req.profile;
-
-        // Render the template and pass the products
-        res.render('products', {products: products, profiles: profiles, profile: profile});
-    } catch (error) {
-        // Handle the error appropriately
-        console.error('Error fetching products:', error);
-        console.log('Error fetching products:', error);
-        res.status(500).send('Internal Server Error');
-    }
-});
-
-
+// Routes to the login page and authenticates the profile
 router.route("/login")
     .get((req, res, next) => {
         res.render("login");
@@ -64,15 +51,19 @@ router.route("/login")
             });
     });
 
+// Logs out the profile
 router.get("/logout", (req, res, next) => {
     authenticationService.loggedin = false;
-    res.cookie( "profileid", 0)
-    res.cookie( "loggedin", authenticationService.loggedin)
+    //Overwrites the cookies to log out the profile
+    res.cookie("profileid", 0)
+    res.cookie("loggedin", authenticationService.loggedin)
     res.cookie("accessToken", "", {maxAge: 0});
-    res.redirect("/");
+    res.redirect("/"); // Redirects to the home page
 });
 
+// Routes to the register page
 router.get("/register", (req, res) => {
+    //For the profile picture
     let uID = req.params.id;
     const filename = uID + ".jpg";
     const options = {
@@ -82,18 +73,11 @@ router.get("/register", (req, res) => {
     res.render("register");
 });
 
+// Registers the profile and redirects to the home page
 router.post("/", profileController.register);
 
-router.get("/addProfile", (req, res) => {
-    let uID = req.params.id;
-    const filename = uID + ".jpg";
-    const options = {
-        root: path.join(__dirname, ".../public/uploads/")
-    };
-    res.sendFile(filename, options);
-    res.render("addProfile");
-});
 
+// Routes to the cart
 router.get("/cart", (req, res, next) => {
     cartItemsModel.joinedCartItems(req.cookies.profileid)
         .then((cartItems) => {
@@ -101,7 +85,7 @@ router.get("/cart", (req, res, next) => {
         });
 })
 
-// Example route handler for adding a product to the cart
+// Route for adding a product to the cart
 router.post("/addToCart", (req, res) => {
     // Extract the necessary data from the request body or query parameters
     const profileId = req.cookies.profileid;
@@ -122,7 +106,29 @@ router.post("/addToCart", (req, res) => {
 });
 
 
+// Routes to the products page
+router.get('/products', async (req, res, next) => {
+    try {
+        // Fetch the products and profiles from the database
+        const products = await productModel.getProducts();
+        const profiles = await profileModel.getProfiles();
+
+        // Initialize the profile variable
+        const profile = req.profile;
+
+        // Render the template and pass the products
+        res.render('products', {products: products, profiles: profiles, profile: profile});
+    } catch (error) {
+        // Handle the error appropriately
+        console.error('Error fetching products:', error);
+        console.log('Error fetching products:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Route for adding a product
 router.route("/addProduct")
+    //For the product picture
     .get((req, res) => {
         let uID = req.params.id;
         const filename = uID + ".jpg";
@@ -154,7 +160,7 @@ router.route("/addProduct")
                         productModel
                             .addProduct(productData)
                             .then((product) => {
-                                res.redirect("/products/" + product.insertId);
+                                res.redirect("/products/" + product.insertId); // In the end. Redirect to the product page
                             })
                             .catch((err) => {
                                 res.status(500).send(err.message);
@@ -168,22 +174,20 @@ router.route("/addProduct")
         }
     });
 
+// Generates a random UUID
 function broofa() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
 }
 
-router.post("/", (req, res, next) => {
-    storage = req.body;
-    res.send("Received your post request");
-});
-
+// Routes to the cart
 router.get("/chat", (req, res, next) => {
     res.render("chat");
 })
 
+// Routes to the cookie page (For fun) Tracks the amount of times you visited that page
 router.get("/cookies", (req, res, next) => {
     // Read cookies
     let counter = req.cookies["visitCounter"];

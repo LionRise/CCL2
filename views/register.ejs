@@ -9,52 +9,47 @@
     <title>Register</title>
 </head>
 
-<body class="d-flex justify-content-center align-items-center">
-<form action="/" method="post" class="login-register-form shadow-lg p-3 mb-5  bg-white rounded" enctype="multipart/form-data">
-    <h3 class="mb-5">Register</h3>
+<body>
+<main style="margin-top: 70px;">
+    <div class="d-flex justify-content-center">
+        <form style="width: auto" role="form" action="/" method="post" id="add-profile-form" class="m-0 shadow-lg p-5 bg-white rounded" enctype="multipart/form-data">
+            <h3 class="mb-3">Register</h3>
+            <!-- Email input -->
+            <div class="form-group">
+                <label for="inputEmail" class="form-label">Email:</label>
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Your email address"
+                       required="">
+            </div>
+            <!-- Name input -->
+            <div class="form-group">
+                <label for="inputName" class="form-label">Name:</label>
+                <input type="text" name="name" id="inputName" class="form-control" placeholder="Your displayed name"
+                       required="">
+            </div>
+            <!-- Info input -->
+            <div class="form-group">
+                <label for="inputInfo" class="form-label">Info:</label>
+                <textarea name="info" id="inputInfo" class="form-control" rows="4"
+                          placeholder="Some information about you..." required="" style="height: 135px;"></textarea>
+            </div>
+            <!-- Password input -->
+            <div class="form-group">
+                <label class="form-label" for="inputPassword">Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password"/>
+            </div>
 
-    <!-- Email input -->
-    <div class="form-floating mb-3">
-        <input type="email" name="email" class="form-control" placeholder="Email Address"/>
-        <label class="form-label" for="inputEmail">Email address</label>
-    </div>
-    <div class="row mb-3">
-        <!-- Name input -->
-        <div class="col form-floating">
-            <input type="text" name="name" class="form-control" placeholder="Name"/>
-            <label class="form-label" for="inputName" style="margin-left: 0.75rem">Name</label>
-        </div>
-    </div>
-    <!-- Info input -->
-    <div class="form-floating mb-3">
-        <input type="text" name="info" class="form-control" placeholder="Your Info"/>
-        <label class="form-label" for="inputInfo">Info</label>
-    </div>
+            <div class="form-group mb-3">
+                <label for="profilePicName" class="form-label">Product Image (jpg):</label>
+                <input type="file" name="profilePicName" id="profilePicName" accept="image/jpeg, image/png, image/jpg" class="form-control" required>
+            </div>
 
-    <!-- Password input -->
-    <div class="form-floating mb-5">
-        <input type="password" name="password" class="form-control" placeholder="Password"/>
-        <label class="form-label" for="inputPassword">Password</label>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-dark btn-lg btn-block mb-4" style="width: 100%"
+                    id="addProduct">Submit
+            </button>
+        </form>
     </div>
-
-
-    <!-- Image -->
-    <div class="form-group mb-3">
-        <label for="productPicName" class="form-label">Product Image (jpg):</label>
-        <input type="file" name="profilePicName" id="profilePicName" accept="image/jpeg, image/png, image/jpg"
-               class="form-control" required>
-    </div>
-
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-dark btn-lg btn-block mb-4" style="width: 100%"
-            id="addProduct">Register
-    </button>
-
-    <!-- Login button -->
-    <div class="text-center">
-        <p>Already have an account? <a href="login">Login!</a></p>
-    </div>
-</form>
+</main>
 </body>
 
 </html>

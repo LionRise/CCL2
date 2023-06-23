@@ -12,6 +12,7 @@ let getCartItems = () => new Promise((resolve, reject) => {
     });
 });
 
+// Handles the database calls for the cartItem routes. Gets all cartItems for a specific profile by profileId
 let getCartItemById = (id) => new Promise((resolve, reject) => {
     const query = "SELECT * FROM cartItems WHERE id = ?";
     db.query(query, [id], function (err, cartItem, fields) {
@@ -23,6 +24,7 @@ let getCartItemById = (id) => new Promise((resolve, reject) => {
     });
 });
 
+//Joins the cartItems table with the products and profiles tables to get all the information needed to display the cart
 let joinedCartItems = (profileId) => new Promise((resolve, reject) => {
     const query = "SELECT prod.id AS product_id, prof.id AS profile_id, prof.*, prod.*, ci.* " +
                     "FROM cartItems ci " +
@@ -42,7 +44,7 @@ let joinedCartItems = (profileId) => new Promise((resolve, reject) => {
 });
 
 
-// Function to add a product to the cart
+// Add a product to the cart
 const addToCart = (profileId, productId, quantity) => {
     return new Promise((resolve, reject) => {
         const query = "INSERT INTO cartItems (fk_profile_id, fk_product_id, quantity) VALUES (?, ?, 1)";

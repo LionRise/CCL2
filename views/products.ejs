@@ -23,16 +23,16 @@
                     <section class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
                         <strong class="d-block py-2"><%= products.length %> results</strong>
                         <div class="ms-auto">
-                            <label for="selectDropdown" hidden="hidden">Select dropdown</label>
+                            <label for="sort-select" hidden="hidden">Select dropdown</label>
                             <select id="sort-select" onchange="handleSortChange()">
                                 <option selected aria-selected="true" value="default">Sort Products</option>
                                 <option value="price">Sort by Price</option>
                                 <option value="title">Sort by Name</option>
                             </select>
                             <div class="btn-group shadow-0 border">
-                                <btn id="view-toggle" onclick="toggleView()" class="btn btn-light" title="Switch view">
+                                <button id="view-toggle" onclick="toggleView()" class="btn btn-light" title="Switch view">
                                     List view
-                                </btn>
+                                </button>
                             </div>
                         </div>
                     </section>

@@ -14,33 +14,34 @@
 <main class="d-flex justify-content-center">
     <form action="/profiles/" method="post" id="add-profile-form"
           class="shadow-lg p-3 mb-5 bg-white rounded d-flex flex-column" enctype="multipart/form-data">
-        <img src="../../uploads/<%= profile.profilePicName %>" class="img-thumbnail img-fluid" style="align-self: center;">
+        <img src="../../uploads/<%= profile.profilePicName %>" alt="<%= profile.name%>" class="img-thumbnail img-fluid" style="align-self: center;">
 
 
         <!-- Name input -->
         <div class="form-floating mb-3 mt-3">
-            <input type="text" name="name" class="form-control" placeholder="Name"
+            <input type="text" id="inputName" name="name" class="form-control" placeholder="Name"
                    value="<%= profile.name %>"/>
             <label class="form-label" for="inputName" style="margin-left: 0.75rem">Name</label>
         </div>
 
         <!-- Email input -->
         <div class="form-floating mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Email Address"
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email Address"
                    value="<%= profile.email %>"/>
             <label class="form-label" for="inputEmail">Email address</label>
         </div>
 
         <!-- Info input -->
         <div class="form-floating mb-3">
-            <input type="text" name="info" class="form-control" placeholder="<%= profile.info %>"
+            <input type="text" name="info" id="inputInfo" class="form-control" placeholder="<%= profile.info %>"
                    value="<%= profile.info %>"/>
-            <label class="form-label" for="inputHero">Hero</label>
+            <label class="form-label" for="inputInfo">Info:</label>
         </div>
 
         <!-- Password input -->
         <div class="form-floating mb-5">
-            <input type="password" hidden="hidden" name="password" class="form-control" placeholder="Password" value="<%= profile.password %>"/>
+            <label class="form-label" hidden="hidden" aria-hidden="true" for="inputPassword">Password</label>
+            <input type="password" hidden="hidden" id="inputPassword" name="password" class="form-control" placeholder="Password" value="<%= profile.password %>"/>
         </div>
 
         <!-- Image input -->

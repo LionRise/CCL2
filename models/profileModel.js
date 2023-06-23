@@ -13,6 +13,7 @@ let getProfiles = () => new Promise((resolve, reject) => {
     });
 });
 
+// Handles the database calls for the profile routes. Gets all profiles for a specific profile by profileId
 let getProfileById = (id) => new Promise((resolve, reject) => {
     const query = `SELECT profiles.*, products.*
                    FROM profiles
@@ -27,7 +28,7 @@ let getProfileById = (id) => new Promise((resolve, reject) => {
     });
 });
 
-
+// Update a profile
 let updateProfile = (profileData) => new Promise((resolve, reject) => {
     const query = "UPDATE profiles SET name = ?, email = ?, info = ? WHERE id = ?";
     const values = [profileData.name, profileData.email, profileData.info, profileData.profileId];
@@ -40,7 +41,7 @@ let updateProfile = (profileData) => new Promise((resolve, reject) => {
     });
 });
 
-
+// Adds a new profile
 let addProfile = (profileData) => new Promise(async (resolve, reject) => {
     try {
         const hashedPassword = await bcrypt.hash(profileData.password, 10);
@@ -59,7 +60,7 @@ let addProfile = (profileData) => new Promise(async (resolve, reject) => {
     }
 });
 
-
+// Deletes a profile
 let deleteProfile = (id) => new Promise((resolve, reject) => {
     const query = "DELETE FROM profiles WHERE id = ?";
     db.query(query, [id], function (err, result, fields) {

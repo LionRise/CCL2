@@ -12,6 +12,7 @@ let getProducts = () => new Promise((resolve, reject) => {
     });
 });
 
+// Handles the database calls for the product routes. Gets all products for a specific profile by profileId
 let getProductById = (id) => new Promise((resolve, reject) => {
     const query = "SELECT prod.id AS product_id, prof.id AS profile_id, prof.*, prod.* FROM products prod JOIN profiles prof ON prod.fk_profileid = prof.id WHERE prod.id = ?";
     db.query(query, [id], function (err, product, fields) {
@@ -23,6 +24,7 @@ let getProductById = (id) => new Promise((resolve, reject) => {
     });
 });
 
+//Joins the products table with the profiles table to get all the information needed to display the product
 let updateProduct = (productData, id) => new Promise((resolve, reject) => {
     const query = "UPDATE products SET title = ?, price = ?, state = ?, description = ?, productPicName = ? WHERE id = ?";
     const values = [productData.title, productData.price, productData.state, productData.description, productData.productPicName, id];
@@ -37,6 +39,7 @@ let updateProduct = (productData, id) => new Promise((resolve, reject) => {
     });
 });
 
+// Adds a new product
 let addProduct = (productData) => new Promise((resolve, reject) => {
     const query = "INSERT INTO products (title, price, state, description, fk_profileid, productPicName) VALUES (?, ?, ?, ?, ?, ?)";
     const values = [productData.title, productData.price, productData.state, productData.description, productData.fk_profileid, productData.productPicName];
@@ -54,6 +57,7 @@ let addProduct = (productData) => new Promise((resolve, reject) => {
     });
 });
 
+// Deletes a product
 let deleteProduct = (id) => new Promise((resolve, reject) => {
     const query = "DELETE FROM products WHERE id = ?";
     db.query(query, [id], function (err, result, fields) {
