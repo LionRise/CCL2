@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 80;
+const port = 443;
 
 // use public folder
 app.use(express.static("public"));
@@ -9,6 +9,18 @@ const path = require("path");
 const ejs = require("ejs");
 const db = require("./services/database");
 const ws = require("./services/websockets");
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
+
+const options = {
+    key: fs.readFileSync('./certs/privkey.pem'),
+    cert: fs.readFileSync('./certs/cert.pem'),
+};
+
+var server = https.createServer(options, app).listen(port, function(){
+    console.log("Express server listening on port " + port);
+});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -31,7 +43,6 @@ app.use(fileUpload({
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
-const fs = require("fs"); // file system
 const morgan = require("morgan"); // logging
 // create a write stream (in append mode) (every time a request comes in, we want to write a new line)
 const accessLogStream = fs.createWriteStream(path.join(__dirname, './logs/requests.log'), { flags: 'a' });
@@ -54,7 +65,3 @@ function errorHandler(err, req, res, next) {
     res.render("error", {error: err, user: req.user});
 }
 app.use(errorHandler);
-
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});
