@@ -4,10 +4,12 @@ It's a fullstack application that shows CRUD operations and db integration.
 ## How to deploy
 1. Clone the repository
 2. Open the project in an editor of your choice
-3. Run `npm install` in the terminal 
-4. Start the server 
-5. Open the browser and go to http://localhost:3000/
-6. Enjoy the website
+3. Run `npm install` in the terminal
+4. (Optional) Create a /certs folder with your domain certificate ('cert.pem' and 'privkey.pem')
+5. Add Enviroment Variables to .env (db credentials) and change the db url to your db's IP in /services/database.js
+6. Start the server 
+7. Open the browser and go to http://localhost or https://localhost
+8. Enjoy the website 
 
 
 ## What you can do
