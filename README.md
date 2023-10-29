@@ -1,10 +1,5 @@
-# CCL2_Stadlinger_Lena_cc221042
-
-
-## Important Links
-* [GitLab Repositiory](https://git.nwt.fhstp.ac.at/cc221042/ccl2_stadlinger_lena_cc221042/)
-* [Mahara](https://mahara.fhstp.ac.at/view/view.php?id=22944)
-
+# My repository for the project for the second Creative Codelab
+It's a fullstack application that shows CRUD operations and db integration.
 
 ## How to deploy
 1. Clone the repository
@@ -27,4 +22,3 @@
 - [x] Join a chat room
 - [x] Create a display name
 - [x] Send messages in a chat room of your choice
-
