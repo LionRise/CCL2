@@ -50,15 +50,17 @@
         <button id="bannerButton1" type="button" class="btn btn-outline-light">
             <a id="bannerLogin" href="<%= getProfileUrl() %>">Login</a>
         </button>
-        <button id="bannerButton2" type="button" class="btn btn-light shadow-0 text-primary pt-2 border border-white">
+        <button id="bannerButton2" type="button"
+                class="btn btn-light shadow-0 text-primary pt-2 border border-white">
             <a id="bannerFindProducts" href="/products" class="pt-1">Find Products</a>
         </button>
     </div>
 </div>
-<main style="z-index: 0; margin-top: 10px;">
-        <h2 class="col-8 text-center">
-            Our favourite items
-        </h2>
+<main style="margin-top: 10px; width: 98%">
+
+    <h2 class="text-center">
+        Our favourite items
+    </h2>
 
     <!-- sidebar + content -->
     <div class="">
@@ -67,7 +69,7 @@
                 <!-- Filter Sidebar -->
 
                 <!-- Products -->
-                <div style="width: 70%" class="container my-1">
+                <div style="width: 90%" class="container my-1">
                     <div class="row">
                         <% for(let i = 0; i < products.length; i++) { %>
                             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 d-flex">
@@ -98,10 +100,6 @@
                 </div>
                 <!-- Products -->
 
-                <!-- Favourites side bar -->
-                <!-- TODO for i in range (like in users) for the favourite product cards -->
-                <!--<div style="width: 15%">
-                </div> -->
             </div>
         </div>
     </div>

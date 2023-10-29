@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 80;
 
 // use public folder
 app.use(express.static("public"));
@@ -51,7 +51,7 @@ app.use("/products", productsRouter);
 app.locals = require('./services/authentication')
 
 function errorHandler(err, req, res, next) {
-    res.render("error", {error: err});
+    res.render("error", {error: err, user: req.user});
 }
 app.use(errorHandler);
 
